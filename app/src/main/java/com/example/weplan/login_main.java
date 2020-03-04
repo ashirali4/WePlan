@@ -31,11 +31,6 @@ public class login_main extends AppCompatActivity {
         ///gdffffffff
 
 
-
-
-        //fsjkfhsjkdfhksdj
-
-
         //fsfsdfds
 
 
