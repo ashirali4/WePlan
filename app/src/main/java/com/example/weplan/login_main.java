@@ -28,10 +28,8 @@ public class login_main extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         initializeUI();
 
-        ///gdffffffff
-// this is ashir ali
 
-        //fsfsdfds
+        //dsdsdsdssfdsjfj
 
 
     }
