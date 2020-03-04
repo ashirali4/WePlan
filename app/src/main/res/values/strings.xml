@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">WePlan</string>
+    <string name="hint" />
+    <string name="welcome_to_weplan">Welcome to WePlan!</string>
+    <string name="sign_in_with_facebook_google_account_for_further_actions"><![CDATA[Sign in with Facebook & Google Account for Further Actions]]></string>
+    <string name="social_accounts_connect">Social Accounts Connect</string>
+    <string name="facebook_app_id">447190002648133</string>
+    <string name="fb_login_protocol_scheme">fb447190002648133</string>
+    <string name="textview">TextView</string>
+    <string name="token">EAAGWt4lBREUBADZA7Cu2c2BKjqaF4e5RbVYOPVICDJCKk449ZAVw6IPIL5iPA2rGii37CZB4PqZCXtvHFA6n08A4jcvxwcLe0BcKHAzlr0B8H7ZAhqj80AaFmDVFj1H58bkpWYNvZCAJL3FleFsz5sX6TOGZCNqZCLkimzZAVcQPgcEUkZCnBbq7inHK4MLD8PenKJtyaewiZC5tQZDZD</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

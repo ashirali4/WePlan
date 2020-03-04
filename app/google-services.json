@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "160885445674",
+    "firebase_url": "https://weplan-df95d.firebaseio.com",
+    "project_id": "weplan-df95d",
+    "storage_bucket": "weplan-df95d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160885445674:android:0d1b279ba4710bc56bdf53",
+        "android_client_info": {
+          "package_name": "com.example.adminmodule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "160885445674-hfulfvc8osrpke44jqhdo768qbj0tc44.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adminmodule",
+            "certificate_hash": "dd7b2dcdfa4594192b23fcd65942b0d5196bd747"
+          }
+        },
+        {
+          "client_id": "160885445674-ea30gr2dbv6vdgob7t0drdsf7dreqdrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcD-QzBYIGd7_UGoVGUOf5B3EDbE5uCFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "160885445674-bsn4rbcvsreib6drl5ei9dpis8canlup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160885445674:android:61a1a9660ad6b3706bdf53",
+        "android_client_info": {
+          "package_name": "com.example.weplan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "160885445674-81g9j3g3lih1c0ki4f40qar3803dujm8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.weplan",
+            "certificate_hash": "e6807b588c06f0aeb9fe2ff89b2b21109d371bbd"
+          }
+        },
+        {
+          "client_id": "160885445674-pick4if25r7jpkpmo3rj6io9k1r1len1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.weplan",
+            "certificate_hash": "26f004d82b2f3a5b5e26a6b5114bf970ad0adb67"
+          }
+        },
+        {
+          "client_id": "160885445674-ea30gr2dbv6vdgob7t0drdsf7dreqdrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcD-QzBYIGd7_UGoVGUOf5B3EDbE5uCFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "160885445674-bsn4rbcvsreib6drl5ei9dpis8canlup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

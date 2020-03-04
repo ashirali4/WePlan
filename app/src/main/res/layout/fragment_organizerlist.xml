@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="365dp"
+        android:layout_height="117dp"
+        android:background="#00C5C4B9"
+        app:cardBackgroundColor="#FBFBFC">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="120dp"
+                android:layout_height="91dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/ic_user" />
+
+            <TextView
+                android:id="@+id/uuuuu"
+                android:layout_width="220dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/imageView12"
+                android:text="Mub Event Planner"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="20sp"
+                app:autoSizeMinTextSize="40dp" />
+
+            <LinearLayout
+                android:layout_width="245dp"
+                android:layout_height="28dp"
+                android:layout_alignTop="@id/uuuuu"
+                android:layout_marginTop="35dp"
+                android:layout_toRightOf="@id/imageView12"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-15dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_location_on_black_24dp" />
+
+                <TextView
+                    android:id="@+id/user_location_org"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:text="Faisalabad" />
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_star_half_black_24dp" />
+
+                <TextView
+                    android:id="@+id/rating_org"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4.3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/uuuuu"
+                android:layout_marginTop="60dp"
+                android:layout_toRightOf="@id/imageView12"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-15dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_shopping_cart_black_24dp" />
+
+                <TextView
+                    android:id="@+id/startb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="70000" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="-" />
+
+                <TextView
+                    android:id="@+id/endb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="80000" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_number"
+                android:layout_width="22dp"
+                android:layout_height="34dp"
+                android:layout_margin="@dimen/text_margin"
+                android:textAppearance="?attr/textAppearanceListItem" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimary" />
+</LinearLayout>

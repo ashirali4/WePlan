@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Search">
+
+    <LinearLayout
+        android:layout_width="377dp"
+        android:layout_height="635dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablelayoutforsearch"
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:background="@android:color/transparent"
+            android:paddingTop="15dp"
+            android:paddingBottom="1dp"
+            app:tabMode="fixed"
+            app:tabPaddingBottom="8dp"
+            app:tabPaddingTop="15dp" />
+
+        <androidx.viewpager2.widget.ViewPager2
+
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="659dp"
+
+
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>
