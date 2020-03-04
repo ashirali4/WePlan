@@ -33,8 +33,7 @@ public class login_main extends AppCompatActivity {
 
 
 
-
-        ijmjimi
+        //fsjkfhsjkdfhksdj
 
 
 
