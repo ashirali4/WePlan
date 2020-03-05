@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cooltechworks.views.shimmer.ShimmerRecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shimmer_recycler_viewforservices"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:shimmer_demo_child_count="10"
+    app:shimmer_demo_layout="@layout/itemimg"
+    app:shimmer_demo_layout_manager_type="linear_vertical"
+    app:shimmer_demo_angle="20" />

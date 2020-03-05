@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.weplan.Fragments.OrganizerListFragment;
+import com.example.weplan.Fragments.ServiceslistFragment;
 
 
 public class OrderPageAdapter extends FragmentStateAdapter {
@@ -23,8 +24,8 @@ public class OrderPageAdapter extends FragmentStateAdapter {
             case 0:
                 return new OrganizerListFragment();
 
-            //    case 1:
-            //return new ServicesListFragment();
+              case 1:
+            return new ServiceslistFragment();
 
             default:
                 return new OrganizerListFragment();

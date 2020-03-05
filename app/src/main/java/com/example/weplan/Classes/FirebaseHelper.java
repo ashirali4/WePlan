@@ -17,11 +17,18 @@ public class FirebaseHelper {
     public String ashir;
     Boolean saved=null;
     String string;
-    ArrayList<String> serviceslist=new ArrayList<>();
-    ArrayList<Services> arrayList=new ArrayList();
 
+    ArrayList<Services> arrayList=new ArrayList();
+    ArrayList<servicelist> servicelist=new ArrayList();
     public interface Callback{
         void onSuccess(ArrayList<Services> arrayList);
+        void onFailure(Exception e);
+
+
+    }
+
+    public interface servicecallback{
+        void onSuccess(ArrayList<servicelist> arrayList);
         void onFailure(Exception e);
 
 
@@ -49,6 +56,8 @@ public class FirebaseHelper {
                     services.imglink = snapshot.child("link").getValue().toString();
                     services.startb = snapshot.child("sb").getValue().toString();
                     services.endb = snapshot.child("eb").getValue().toString();
+
+
                     arrayList.add(services);
                 }
                 callback.onSuccess(arrayList);
@@ -61,4 +70,36 @@ public class FirebaseHelper {
         });
 
     }
-}
+
+
+    public void getserviceslist(final servicecallback callback) {
+
+
+        db = FirebaseDatabase.getInstance().getReference("Servicelist");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot: dataSnapshot.getChildren())
+                {
+                    servicelist services = new servicelist();
+                    services.sname = snapshot.child("servicename").getValue().toString();
+                    services.logolink = snapshot.child("logo").getValue().toString();
+
+
+
+                    servicelist.add(services);
+                }
+                callback.onSuccess(servicelist);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onFailure(databaseError.toException());
+            }
+        });
+
+    }
+
+
+
+    }
