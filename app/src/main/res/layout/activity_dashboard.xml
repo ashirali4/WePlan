@@ -103,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:text="Map View" />
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
