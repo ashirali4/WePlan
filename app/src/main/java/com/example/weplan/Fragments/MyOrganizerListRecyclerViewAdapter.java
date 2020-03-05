@@ -1,6 +1,9 @@
 package com.example.weplan.Fragments;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +14,18 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weplan.Classes.Services;
+import com.example.weplan.ProfileScreen;
 import com.example.weplan.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+
 public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyOrganizerListRecyclerViewAdapter.ViewHolder> {
 
     private final List<Services> mValues;
     private final OrganizerListFragment.OnListFragmentInteractionListener mmListener;
+    public ProfileScreen profileScreen;
 
     public MyOrganizerListRecyclerViewAdapter(List<Services> items, OrganizerListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
@@ -36,13 +42,18 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+        final String name=mValues.get(position).servicename;
+        final String location=mValues.get(position).location;
+        final String rating=mValues.get(position).rating;
+        final String budget=mValues.get(position).startb;
+        final Bitmap image=mValues.get(position).imgbitmap;
 
-        holder.organizername.setText(mValues.get(position).servicename);
-        holder.locationorg.setText(mValues.get(position).location);
-        holder.ratingorg.setText(mValues.get(position).rating);
-        holder.startb.setText(mValues.get(position).startb);
+        holder.organizername.setText(name);
+        holder.locationorg.setText(location);
+        holder.ratingorg.setText(rating);
+        holder.startb.setText(budget);
         holder.endb.setText(mValues.get(position).endb);
-        holder.imageView.setImageBitmap(mValues.get(position).imgbitmap);
+        holder.imageView.setImageBitmap(image);
         Picasso.get().load(mValues.get(position).imglink).into(holder.imageView);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -53,12 +64,25 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
                     // fragment is attached to one) that an item has been selected.
                     mmListener.onListFragmentInteraction();
                     Toast.makeText(v.getContext(), "kjhk  "+ position, Toast.LENGTH_SHORT).show();
+
+                    Bundle bundle=new Bundle();
+                    bundle.putString("name",name);
+                    bundle.putString("location",location);
+                    bundle.putString("rating",rating);
+                    bundle.putString("budget",budget);
+                    bundle.putParcelable("image",image);
+                    Intent intent=new Intent(v.getContext(), ProfileScreen.class);
+                    intent.putExtras(bundle);
+                    v.getContext().startActivity(intent);
+
                 }
             }
         });
 
 
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -94,6 +118,8 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         public String toString() {
             return super.toString() + " '" + organizername.getText() + "'";
         }
+
+
     }
 
 
