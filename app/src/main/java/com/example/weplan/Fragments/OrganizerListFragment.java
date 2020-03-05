@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.weplan.Classes.FirebaseHelper;
 import com.example.weplan.Classes.Services;
-import com.example.weplan.Fragments.dummy.DummyContent;
 import com.example.weplan.R;
 
 import java.util.ArrayList;
@@ -74,7 +73,7 @@ public class OrganizerListFragment extends Fragment {
     }
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof ServiceslistFragment.OnListFragmentInteractionListener) {
+        if (context instanceof OrganizerListFragment.OnListFragmentInteractionListener) {
             mListener = (OrganizerListFragment.OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()

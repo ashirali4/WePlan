@@ -11,8 +11,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weplan.Fragments.dummy.DummyContent;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.example.weplan.Classes.FirebaseHelper;
+import com.example.weplan.Classes.servicelist;
 import com.example.weplan.R;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -26,7 +30,10 @@ public class ServiceslistFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    FirebaseHelper helper;
+    ArrayList<servicelist> mylisttemp;
+    ShimmerRecyclerView recyclerViewv;
+    private ServiceslistFragment.OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -58,17 +65,40 @@ public class ServiceslistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_serviceslist_list, container, false);
-
+        recyclerViewv = (ShimmerRecyclerView) view.findViewById(R.id.shimmer_recycler_viewforservices);
+        recyclerViewv.showShimmerAdapter();
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            final RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyServiceslistRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+
+        helper = new FirebaseHelper();
+        helper.getserviceslist(new FirebaseHelper.servicecallback() {
+
+
+
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(ArrayList<servicelist> arrayList) {
+                mylisttemp=arrayList;
+                recyclerViewv.setAdapter(new MyServiceslistRecyclerViewAdapter(mylisttemp,mListener));
+
+            }
+
+
+        });
+
         }
         return view;
     }
