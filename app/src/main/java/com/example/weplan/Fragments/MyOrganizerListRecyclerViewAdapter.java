@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,11 +24,11 @@ import java.util.List;
 public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyOrganizerListRecyclerViewAdapter.ViewHolder> {
 
     private final List<Services> mValues;
-    // private final OnListFragmentInteractionListener mListener;
+    private final OrganizerListFragment.OnListFragmentInteractionListener mmListener;
 
-    public MyOrganizerListRecyclerViewAdapter(List<Services> items) {
+    public MyOrganizerListRecyclerViewAdapter(List<Services> items, OrganizerListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
-
+        mmListener=listener;
     }
 
     @Override
@@ -38,7 +39,7 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
         holder.organizername.setText(mValues.get(position).servicename);
@@ -49,7 +50,17 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         holder.imageView.setImageBitmap(mValues.get(position).imgbitmap);
         Picasso.get().load(mValues.get(position).imglink).into(holder.imageView);
 
-
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mmListener) {
+                    // Notify the active callbacks interface (the activity, if the
+                    // fragment is attached to one) that an item has been selected.
+                    mmListener.onListFragmentInteraction();
+                    Toast.makeText(v.getContext(), "kjhk  "+ position, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
     }

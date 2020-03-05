@@ -1,20 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/item_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="374dp"
+        android:layout_height="95dp"
+        android:background="#00C5C4B9"
+        app:cardBackgroundColor="#FBFBFC">
 
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="109dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/ic_user" />
+
+            <TextView
+                android:id="@+id/uuuuu"
+                android:layout_width="188dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/imageView12"
+                android:text="Food Services"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="20sp"
+                app:autoSizeMinTextSize="40dp" />
+
+            <LinearLayout
+                android:layout_width="197dp"
+                android:layout_height="25dp"
+                android:layout_alignTop="@id/uuuuu"
+                android:layout_marginTop="35dp"
+                android:layout_toRightOf="@id/imageView12"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-16dp"
+                    android:layout_weight="0.3"
+                    app:srcCompat="@drawable/ic_view_comfy_black_24dp" />
+
+                <TextView
+                    android:id="@+id/user_location_org"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:text="154 Services Found" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_number"
+                android:layout_width="22dp"
+                android:layout_height="34dp"
+                android:layout_margin="@dimen/text_margin"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="36dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="3dp"
+                app:icon="@drawable/ic_navigateee_next_black_24dp"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                android:layout_marginTop="25dp"
+                android:layout_toRightOf="@id/uuuuu"
+                app:cornerRadius="25dp"
+
+
+                />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimary" />
 </LinearLayout>

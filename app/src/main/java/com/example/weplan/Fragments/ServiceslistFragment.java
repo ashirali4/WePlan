@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weplan.Fragments.dummy.DummyContent;
-import com.example.weplan.Fragments.dummy.DummyContent.DummyItem;
 import com.example.weplan.R;
 
 /**
@@ -104,6 +103,6 @@ public class ServiceslistFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction();
     }
 }

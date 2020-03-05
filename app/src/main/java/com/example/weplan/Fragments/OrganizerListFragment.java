@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.weplan.Classes.FirebaseHelper;
 import com.example.weplan.Classes.Services;
+import com.example.weplan.Fragments.dummy.DummyContent;
 import com.example.weplan.R;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class OrganizerListFragment extends Fragment {
     private int mColumnCount = 1;
     ShimmerRecyclerView recyclerView;
     ArrayList<Services> templist;
-
+    private OrganizerListFragment.OnListFragmentInteractionListener mListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,7 +61,8 @@ public class OrganizerListFragment extends Fragment {
                 @Override
                 public void onSuccess(ArrayList<Services> arrayList) {
                     templist=arrayList;
-                    recyclerView.setAdapter(new MyOrganizerListRecyclerViewAdapter(templist));
+                    recyclerView.setAdapter(new MyOrganizerListRecyclerViewAdapter(templist,mListener));
+
                 }
 
 
@@ -68,5 +70,19 @@ public class OrganizerListFragment extends Fragment {
 
         }
         return view;
+
+    }
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ServiceslistFragment.OnListFragmentInteractionListener) {
+            mListener = (OrganizerListFragment.OnListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
+    }
+    public interface OnListFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onListFragmentInteraction();
     }
 }

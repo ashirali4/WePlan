@@ -1,14 +1,16 @@
 package com.example.weplan.Fragments;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weplan.Fragments.ServiceslistFragment.OnListFragmentInteractionListener;
 import com.example.weplan.Fragments.dummy.DummyContent.DummyItem;
+import com.example.weplan.R;
 
 import java.util.List;
 
@@ -35,10 +37,10 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +48,8 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction();
+                    Toast.makeText(v.getContext(), "kjhk  "+position, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -60,19 +63,16 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
-        public final TextView mContentView;
+
         public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
-    }
-}
+
+
+}}
