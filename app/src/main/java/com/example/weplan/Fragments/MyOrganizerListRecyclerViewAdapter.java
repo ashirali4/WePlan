@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weplan.Classes.Services;
 import com.example.weplan.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -45,7 +46,9 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         holder.ratingorg.setText(mValues.get(position).rating);
         holder.startb.setText(mValues.get(position).startb);
         holder.endb.setText(mValues.get(position).endb);
-        new DownLoadImageTask(holder.imageView).execute(mValues.get(position).imglink);
+        holder.imageView.setImageBitmap(mValues.get(position).imgbitmap);
+        Picasso.get().load(mValues.get(position).imglink).into(holder.imageView);
+
 
 
 
@@ -126,4 +129,3 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         }
     }
 }
-

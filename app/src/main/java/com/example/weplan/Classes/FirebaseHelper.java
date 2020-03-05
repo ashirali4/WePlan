@@ -49,6 +49,8 @@ public class FirebaseHelper {
                     services.imglink = snapshot.child("link").getValue().toString();
                     services.startb = snapshot.child("sb").getValue().toString();
                     services.endb = snapshot.child("eb").getValue().toString();
+
+
                     arrayList.add(services);
                 }
                 callback.onSuccess(arrayList);
@@ -61,4 +63,5 @@ public class FirebaseHelper {
         });
 
     }
-}
+
+    }

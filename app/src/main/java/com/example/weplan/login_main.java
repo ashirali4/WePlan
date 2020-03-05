@@ -2,7 +2,9 @@ package com.example.weplan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.developer.kalert.KAlertDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class login_main extends AppCompatActivity {
     private EditText emailTV, passwordTV;
     private FirebaseAuth mAuth;
+    KAlertDialog pDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +33,7 @@ public class login_main extends AppCompatActivity {
         initializeUI();
 
 
-        //dsdsdsdssfdsjfj
+
 
 
     }
@@ -50,9 +54,35 @@ public class login_main extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        pDialog.dismiss();
+    }
+
     public void create_account(View view) {
-        Intent intent = new Intent(login_main.this, signup.class);
-        startActivity(intent);
+        pDialog = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                Intent intent = new Intent(login_main.this, signup.class);
+                startActivity(intent);
+                pDialog.hide();
+            }
+        }, 1000);
     }
 
     public void Sign_in(View view) {
@@ -63,10 +93,14 @@ public class login_main extends AppCompatActivity {
         emailTV = findViewById(R.id.email);
         passwordTV = findViewById(R.id.password);
     }
+
     private void loginUserAccount() {
 
-
-        String email, password;
+        pDialog = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        final String email, password;
         email = emailTV.getText().toString();
         password = passwordTV.getText().toString();
 
@@ -78,19 +112,32 @@ public class login_main extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
             return;
         }
-
+        pDialog.show();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
 
 
                             Intent intent = new Intent(login_main.this, DashboardActivity.class);
                             startActivity(intent);
+                            pDialog.hide();
                         }
                         else {
+                            pDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
+                               pDialog .setTitleText("Please Verify Creditionals Again");
+                               pDialog .setContentText("Please Verify Creditionals Again");
+                               pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    pDialog .hide();
+                                }
+                            });
+
+                            pDialog.isShowCancelButton();
                             Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
 
                         }

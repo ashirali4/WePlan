@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.weplan.Classes.FirebaseHelper;
 import com.example.weplan.Classes.Services;
 import com.example.weplan.R;
@@ -23,22 +24,28 @@ public class OrganizerListFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    RecyclerView recyclerView;
+    ShimmerRecyclerView recyclerView;
+    ArrayList<Services> templist;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_organizerlist_list, container, false);
+         recyclerView = (ShimmerRecyclerView) view.findViewById(R.id.shimmer_recycler_view);
+        recyclerView.showShimmerAdapter();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            recyclerView = (RecyclerView) view;
+            recyclerView = (ShimmerRecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+
+
             helper = new FirebaseHelper();
             helper.getlist(new FirebaseHelper.Callback() {
 
@@ -52,11 +59,13 @@ public class OrganizerListFragment extends Fragment {
 
                 @Override
                 public void onSuccess(ArrayList<Services> arrayList) {
-                    recyclerView.setAdapter(new MyOrganizerListRecyclerViewAdapter(arrayList));
+                    templist=arrayList;
+                    recyclerView.setAdapter(new MyOrganizerListRecyclerViewAdapter(templist));
                 }
 
 
             });
+
         }
         return view;
     }

@@ -18,6 +18,10 @@ public class Search extends AppCompatActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+
+
+
         ViewPager2 viewPager2=findViewById(R.id.viewpager);
         viewPager2.setAdapter(new OrderPageAdapter(this));
         TabLayout tableLayout=findViewById(R.id.tablelayoutforsearch);
