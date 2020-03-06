@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.developer.kalert.KAlertDialog;
 import com.example.weplan.Adapters.Adapter;
+import com.example.weplan.Adapters.Servicehomeadapter;
 import com.example.weplan.R;
 
 import java.util.ArrayList;
@@ -37,8 +38,9 @@ public class Location extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
-    public RecyclerView recyclerView;
+    private String mParam2; public RecyclerView recyclerView;
+    public RecyclerView recyclerVieww;
+
     KAlertDialog pDialog;
 
     // Array list for recycler view data source
@@ -46,15 +48,16 @@ public class Location extends Fragment {
 
     // Layout Manager
     RecyclerView.LayoutManager RecyclerViewLayoutManager;
-    LinearLayoutManager HorizontalLayout;
+    RecyclerView.LayoutManager RecyclerViewLayoutManagerr;
+    LinearLayoutManager HorizontalLayout,HorizontalLayoutt;
     // adapter class object
     Adapter adapter;
+    Servicehomeadapter serviceadapter;
 
     // Linear Layout Manager
 
 View view;
-    View ChildView;
-    int RecyclerViewItemPosition;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -100,6 +103,7 @@ View view;
         pDialog.setCancelable(false);
         pDialog.show();
         recyclerView = view.findViewById(R.id.recyclerview);
+        recyclerVieww = view.findViewById(R.id.servicesslist);
         RecyclerViewLayoutManager
                 = new LinearLayoutManager(
                 view.getContext());
@@ -107,14 +111,15 @@ View view;
         // Set LayoutManager on Recycler View
         recyclerView.setLayoutManager(
                 RecyclerViewLayoutManager);
-
+        recyclerVieww.setLayoutManager(
+                RecyclerViewLayoutManagerr);
         // Adding items to RecyclerView.
         AddItemsToRecyclerViewArrayList();
 
         // calling constructor of adapter
         // with source list as a parameter
         adapter = new Adapter(source);
-
+        serviceadapter=new Servicehomeadapter(source);
         // Set Horizontal Layout Manager
         // for Recycler view
         HorizontalLayout
@@ -122,8 +127,14 @@ View view;
                 view.getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        recyclerView.setLayoutManager(HorizontalLayout);
+        HorizontalLayoutt
+                = new LinearLayoutManager(
+                view.getContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
 
+        recyclerView.setLayoutManager(HorizontalLayout);
+        recyclerVieww.setLayoutManager(HorizontalLayoutt);
         // Set adapter on recycler view
         pDialog.show();
 
@@ -133,6 +144,7 @@ View view;
             public void run() {
                 pDialog.hide();
                 recyclerView.setAdapter(adapter);
+                recyclerVieww.setAdapter(serviceadapter);
             }
         }, 2000);
 

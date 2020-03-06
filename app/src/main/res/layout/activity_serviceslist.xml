@@ -18,43 +18,39 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/image3"
-            android:layout_width="155dp"
-            android:layout_height="155dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_user" />
-
+            android:src="@drawable/fffffff" />
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:id="@+id/s_title"
-            android:fontFamily="@font/poppins_bold"
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="13.3dp"
-            android:textColor="#1e2432"
-            android:lineSpacingExtra="9sp"
-            android:text="Caucasus"
-            />
+            android:layout_marginTop="7.3dp"
 
+            android:fontFamily="@font/poppins_bold"
+            android:lineSpacingExtra="8sp"
+            android:text="Caucasus"
+            android:textColor="#1e2432"
+            android:textSize="12sp" />
 
 
         <TextView
 
+            android:id="@+id/textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#c2c4ca"
-            android:id="@+id/textview"
             android:layout_gravity="center"
             android:layout_marginTop="2.5dp"
-            android:fontFamily="@font/poppins_regular"
             android:layout_marginBottom="5dp"
+            android:fontFamily="@font/poppins_regular"
             android:lineSpacingExtra="7sp"
             android:text="Georgia"
-            />
+            android:textColor="#c2c4ca"
+            android:textSize="10sp" />
 
     </LinearLayout>
 

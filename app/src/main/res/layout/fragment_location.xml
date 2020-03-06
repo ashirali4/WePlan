@@ -159,24 +159,17 @@
                     android:textSize="17.3dp" />
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="View all"
-                    android:textColor="#2050d5"
-                    android:textSize="13.5dp" />
-
-
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/servicerecycler"
+                android:id="@+id/servicesslist"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
+                android:layout_marginLeft="10dp
+"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:scrollbars="horizontal"
-                tools:listitem="@layout/fragment_featuredlists" />
+                tools:listitem="@layout/activity_serviceslist" />
         </LinearLayout>
 
     </ScrollView>
