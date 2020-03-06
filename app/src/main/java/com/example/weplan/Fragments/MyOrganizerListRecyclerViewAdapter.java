@@ -45,15 +45,16 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         final String name=mValues.get(position).servicename;
         final String location=mValues.get(position).location;
         final String rating=mValues.get(position).rating;
+        final Float ratingFloat=Float.parseFloat(rating);
         final String budget=mValues.get(position).startb;
-        final Bitmap image=mValues.get(position).imgbitmap;
+        final String imagelink=mValues.get(position).imglink;
 
         holder.organizername.setText(name);
         holder.locationorg.setText(location);
         holder.ratingorg.setText(rating);
         holder.startb.setText(budget);
         holder.endb.setText(mValues.get(position).endb);
-        holder.imageView.setImageBitmap(image);
+        holder.imageView.setImageBitmap(mValues.get(position).imgbitmap);
         Picasso.get().load(mValues.get(position).imglink).into(holder.imageView);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -63,14 +64,13 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mmListener.onListFragmentInteraction();
-                    Toast.makeText(v.getContext(), "kjhk  "+ position, Toast.LENGTH_SHORT).show();
 
                     Bundle bundle=new Bundle();
                     bundle.putString("name",name);
                     bundle.putString("location",location);
-                    bundle.putString("rating",rating);
+                    bundle.putFloat("rating",ratingFloat);
                     bundle.putString("budget",budget);
-                    bundle.putParcelable("image",image);
+                    bundle.putString("imageLink",imagelink);
                     Intent intent=new Intent(v.getContext(), ProfileScreen.class);
                     intent.putExtras(bundle);
                     v.getContext().startActivity(intent);
