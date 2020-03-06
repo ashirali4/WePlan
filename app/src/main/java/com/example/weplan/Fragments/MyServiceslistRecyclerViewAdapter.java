@@ -1,5 +1,7 @@
 package com.example.weplan.Fragments;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weplan.Classes.servicelist;
 import com.example.weplan.Fragments.ServiceslistFragment.OnListFragmentInteractionListener;
 import com.example.weplan.Fragments.dummy.DummyContent.DummyItem;
+import com.example.weplan.ProfileScreen;
 import com.example.weplan.R;
 import com.squareup.picasso.Picasso;
 
@@ -42,6 +45,7 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+
         holder.servicename.setText(mValues.get(position).sname);
         Picasso.get().load(mValues.get(position).logolink).into(holder.servicelogo
         );
@@ -52,7 +56,7 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
             public void onClick(View v) {
                 if (null != mListener) {
                     mListener.onListFragmentInteraction();
-                    Toast.makeText(v.getContext(), "kjhk  "+position, Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
