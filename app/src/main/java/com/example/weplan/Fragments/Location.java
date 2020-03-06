@@ -1,16 +1,25 @@
 package com.example.weplan.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.developer.kalert.KAlertDialog;
+import com.example.weplan.Adapters.Adapter;
 import com.example.weplan.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +38,23 @@ public class Location extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public RecyclerView recyclerView;
+    KAlertDialog pDialog;
+
+    // Array list for recycler view data source
+    ArrayList<String> source;
+
+    // Layout Manager
+    RecyclerView.LayoutManager RecyclerViewLayoutManager;
+    LinearLayoutManager HorizontalLayout;
+    // adapter class object
+    Adapter adapter;
+
+    // Linear Layout Manager
+
+View view;
+    View ChildView;
+    int RecyclerViewItemPosition;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,8 +92,58 @@ public class Location extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_location, container, false);
+
+        view=inflater.inflate(R.layout.fragment_location, container, false);
+        pDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        recyclerView = view.findViewById(R.id.recyclerview);
+        RecyclerViewLayoutManager
+                = new LinearLayoutManager(
+                view.getContext());
+
+        // Set LayoutManager on Recycler View
+        recyclerView.setLayoutManager(
+                RecyclerViewLayoutManager);
+
+        // Adding items to RecyclerView.
+        AddItemsToRecyclerViewArrayList();
+
+        // calling constructor of adapter
+        // with source list as a parameter
+        adapter = new Adapter(source);
+
+        // Set Horizontal Layout Manager
+        // for Recycler view
+        HorizontalLayout
+                = new LinearLayoutManager(
+                view.getContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
+        recyclerView.setLayoutManager(HorizontalLayout);
+
+        // Set adapter on recycler view
+        pDialog.show();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pDialog.hide();
+                recyclerView.setAdapter(adapter);
+            }
+        }, 2000);
+
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -76,7 +152,18 @@ public class Location extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
+    public void AddItemsToRecyclerViewArrayList()
+    {
+        // Adding items to ArrayList
+        source = new ArrayList<>();
+        source.add("gfg");
+        source.add("is");
+        source.add("best");
+        source.add("site");
+        source.add("for");
+        source.add("interview");
+        source.add("preparation");
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

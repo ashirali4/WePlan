@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +17,17 @@ import com.example.weplan.Fragments.Home_Dashboard_Featured;
 import com.example.weplan.Fragments.Location;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class DashboardActivity extends AppCompatActivity implements Accounts.OnFragmentInteractionListener,Location.OnFragmentInteractionListener,Home_Dashboard_Featured.OnFragmentInteractionListener {
+public class DashboardActivity extends AppCompatActivity implements Accounts.OnFragmentInteractionListener,Location.OnFragmentInteractionListener,Home_Dashboard_Featured.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Remove title bar
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+//Remove notification bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -61,7 +70,7 @@ public class DashboardActivity extends AppCompatActivity implements Accounts.OnF
                             selectedFragment = new Home_Dashboard_Featured();
                             break;
                         case R.id.nav_favorites:
-                            selectedFragment = new Accounts();
+
                             break;
                         case R.id.nav_search:
                             selectedFragment = new Location();
@@ -78,4 +87,6 @@ public class DashboardActivity extends AppCompatActivity implements Accounts.OnF
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
 }

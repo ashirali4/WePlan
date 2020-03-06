@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+
+        android:orientation="vertical">
+
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/image3"
+            android:layout_width="155dp"
+            android:layout_height="155dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_user" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:id="@+id/s_title"
+            android:fontFamily="@font/poppins_bold"
+
+            android:layout_gravity="center"
+            android:layout_marginTop="13.3dp"
+            android:textColor="#1e2432"
+            android:lineSpacingExtra="9sp"
+            android:text="Caucasus"
+            />
+
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#c2c4ca"
+            android:id="@+id/textview"
+            android:layout_gravity="center"
+            android:layout_marginTop="2.5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="5dp"
+            android:lineSpacingExtra="7sp"
+            android:text="Georgia"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
