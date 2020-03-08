@@ -1,14 +1,22 @@
 package com.example.weplan.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
+import com.developer.kalert.KAlertDialog;
 import com.example.weplan.R;
 
 /**
@@ -28,7 +36,11 @@ public class Home_Dashboard_Featured extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    KAlertDialog pDialog;
+  View viewhome;
+    Animation fadeIn;
+    LinearLayout dialoge,dialoge1;
+    AlphaAnimation buttonClick;
     private OnFragmentInteractionListener mListener;
 
     public Home_Dashboard_Featured() {
@@ -66,7 +78,53 @@ public class Home_Dashboard_Featured extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home__dashboard__featured, container, false);
+        viewhome= inflater.inflate(R.layout.fragment_home__dashboard__featured, container, false);
+          buttonClick = new AlphaAnimation(2F, 0.8F);
+
+
+
+         ImageButton button = (ImageButton) viewhome.findViewById(R.id.imageButton2);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                v.startAnimation(buttonClick);
+
+            }
+        });
+
+
+
+
+       // fadeIn = new AlphaAnimation(0, 1);
+      //  fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+
+        fadeIn   =    AnimationUtils.loadAnimation(getContext(), R.anim.layoutloading);
+
+        fadeIn.setDuration(2000);
+        dialoge   = (LinearLayout)viewhome.findViewById(R.id.weplanassi);
+        dialoge.setVisibility(LinearLayout.VISIBLE);
+
+        dialoge1   = (LinearLayout)viewhome.findViewById(R.id.require);
+        dialoge1.setVisibility(LinearLayout.VISIBLE);
+
+        pDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pDialog.hide();
+
+            }
+        }, 1000);
+        dialoge.setAnimation(fadeIn);
+        dialoge1.setAnimation(fadeIn);
+        dialoge.animate();
+        dialoge1.animate();
+        fadeIn.start();
+        return viewhome;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

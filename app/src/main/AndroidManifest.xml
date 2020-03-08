@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".serviceslist"></activity>
+
         <activity android:name=".ProfileScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".requirement" />
-        <activity android:name=".Search" />
+        <activity android:name=".Search" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ChatMainActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".Splash">

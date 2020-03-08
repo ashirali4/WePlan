@@ -3,17 +3,23 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_add_black_24dp"
+        android:icon="@drawable/home_navigation"
         android:title="Home" />
 
     <item
-        android:id="@+id/nav_favorites"
-        android:icon="@drawable/ic_favorite_black_24dp"
-        android:title="Favorites" />
-
-    <item
         android:id="@+id/nav_search"
-        android:icon="@drawable/ic_cancel_copy"
-        android:title="Search" />
+        android:icon="@drawable/ic_best"
+        android:title="Featured" />
+    <item
+        android:id="@+id/nav_recent"
+        android:icon="@drawable/ic_chat"
+        android:title="Messages" />
+    <item
+        android:id="@+id/nav_favorites"
+        android:icon="@drawable/ic_account"
+        android:title="Profile" />
+
+
+
 
 </menu>
