@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.applozic.mobicomkit.uiwidgets.conversation.ConversationUIService;
+import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -21,10 +23,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
    //
+   MaterialButton materialButton;
     int RC_SIGN_IN;
     private static final String TAG= "FACEBOOK";
     private CallbackManager mCallbackManager;
@@ -36,11 +40,15 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        materialButton=findViewById(R.id.sendMessage);
         mAuth = FirebaseAuth.getInstance();
 
         initializeUI();
+        materialButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
+            }
+        });
 
 
 
@@ -139,4 +147,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     public void startusing(View view) {
     }
+
+
+
 }

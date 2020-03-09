@@ -94,6 +94,7 @@ public class Home_Dashboard_Featured extends Fragment {
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
         pDialog.setTitleText("Please Wait");
         pDialog.setCancelable(false);
+
           final ImageButton chatbot = (ImageButton) viewhome.findViewById(R.id.imageButton2);
         ImageButton manual = (ImageButton) viewhome.findViewById(R.id.imageButton22);
         chatbot.setOnClickListener(new View.OnClickListener() {
