@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:labelVisibilityMode="labeled"
-
         app:menu="@menu/menu"
         />
 

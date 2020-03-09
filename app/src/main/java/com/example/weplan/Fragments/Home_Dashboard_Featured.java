@@ -1,10 +1,12 @@
 package com.example.weplan.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,11 @@ import androidx.fragment.app.Fragment;
 
 import com.developer.kalert.KAlertDialog;
 import com.example.weplan.R;
+import com.example.weplan.requirement;
+
+import io.kommunicate.KmConversationBuilder;
+import io.kommunicate.Kommunicate;
+import io.kommunicate.callbacks.KmCallback;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,10 +44,11 @@ public class Home_Dashboard_Featured extends Fragment {
     private String mParam1;
     private String mParam2;
     KAlertDialog pDialog;
-  View viewhome;
+    View viewhome;
     Animation fadeIn;
     LinearLayout dialoge,dialoge1;
     AlphaAnimation buttonClick;
+    private Handler mHandler;
     private OnFragmentInteractionListener mListener;
 
     public Home_Dashboard_Featured() {
@@ -77,16 +85,54 @@ public class Home_Dashboard_Featured extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mHandler= new Handler();
+
         // Inflate the layout for this fragment
         viewhome= inflater.inflate(R.layout.fragment_home__dashboard__featured, container, false);
           buttonClick = new AlphaAnimation(2F, 0.8F);
-
-
-
-         ImageButton button = (ImageButton) viewhome.findViewById(R.id.imageButton2);
-        button.setOnClickListener(new View.OnClickListener() {
+        pDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+          final ImageButton chatbot = (ImageButton) viewhome.findViewById(R.id.imageButton2);
+        ImageButton manual = (ImageButton) viewhome.findViewById(R.id.imageButton22);
+        chatbot.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.startAnimation(buttonClick);
+                pDialog.show();
+                mHandler.postDelayed(new Runnable() {
+                    public void run() {
+                        Kommunicate.init(getContext(), "3cb88d86ea338624912c3ae5aaaa52664");
+                        new KmConversationBuilder(getContext())
+                                .launchConversation(new KmCallback() {
+                                    @Override
+                                    public void onSuccess(Object message) {
+                                        Log.d("Conversation", "Success : " + message);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Object error) {
+                                        Log.d("Conversation", "Failure : " + error);
+                                    }
+                                });
+                        pDialog.hide();
+                    }
+                }, 3000);
+
+            }
+        });
+        manual.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                v.startAnimation(buttonClick);
+                pDialog.show();
+                mHandler.postDelayed(new Runnable() {
+                    public void run() {
+                        Intent intent = new Intent(getContext(), requirement.class);
+                        startActivity(intent);
+                        pDialog.hide();
+                    }
+                }, 1000);
+
 
             }
         });
@@ -106,10 +152,7 @@ public class Home_Dashboard_Featured extends Fragment {
         dialoge1   = (LinearLayout)viewhome.findViewById(R.id.require);
         dialoge1.setVisibility(LinearLayout.VISIBLE);
 
-        pDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
-        pDialog.setTitleText("Please Wait");
-        pDialog.setCancelable(false);
+
         pDialog.show();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

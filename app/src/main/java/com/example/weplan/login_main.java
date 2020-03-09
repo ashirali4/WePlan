@@ -25,12 +25,16 @@ public class login_main extends AppCompatActivity {
     private EditText emailTV, passwordTV;
     private FirebaseAuth mAuth;
     KAlertDialog pDialog;
+    String appID = "14953b559be4c1b"; // Replace with your App Id.
+    String region = "us"; // Replace with the region for your App.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
         mAuth = FirebaseAuth.getInstance();
         initializeUI();
+
 
 
 

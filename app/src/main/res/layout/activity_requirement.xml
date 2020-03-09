@@ -1,56 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
     tools:context=".requirement">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:ems="10"
-        android:hint="Enter Budget"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:ems="10"
-        android:hint="Loction"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:ems="10"
-        android:hint="Number of Poeple"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        <ImageView
+            android:id="@+id/imageView226"
+            android:layout_width="63dp"
+            android:layout_height="79dp"
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+            app:srcCompat="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="1"
+            android:src="@drawable/weplancolor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/applozic_transparent_color"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:onClick="searchforreq"
-        android:text="@android:string/search_go"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        android:hint="Please Input Budget"
+        app:boxStrokeColor="#3F51B5">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:drawableLeft="@drawable/ic_budget"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="number"
+                android:textColorHighlight="#3F51B5"
+                android:textSize="14sp"
+                app:startIconDrawable="@drawable/ic_budget" />
+    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:hint="Enter Number of People"
+            app:boxStrokeColor="#3F51B5">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:drawableLeft="@drawable/ic_team"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="number"
+                android:textColorHighlight="#3F51B5"
+                android:textSize="14sp"
+                android:layout_marginBottom="10dp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:hint="Choose Location"
+            app:boxStrokeColor="#3F51B5">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:drawableLeft="@drawable/ic_world"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="text"
+                android:textColorHighlight="#3F51B5"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="199dp"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/ic_radio"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingStart="10dp"
+                    android:paddingBottom="1dp"
+                    android:text="Event Organizers"
+                    android:textColor="#090707"
+
+                    android:theme="@style/Default" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="199dp"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/ic_radio"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingStart="10dp"
+                    android:paddingBottom="1dp"
+                    android:text="Services"
+                    android:textColor="#090707"
+
+                    android:theme="@style/Default" />
+                ...
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="261dp"
+                android:layout_height="63dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:onClick="searchforreq"
+                android:text="@android:string/search_go"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+
+
