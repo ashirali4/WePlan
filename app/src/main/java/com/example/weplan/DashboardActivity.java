@@ -23,6 +23,7 @@ import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComQuickConve
 import com.example.weplan.Fragments.Accounts;
 import com.example.weplan.Fragments.Home_Dashboard_Featured;
 import com.example.weplan.Fragments.Location;
+import com.example.weplan.Fragments.ProfileFragment;
 import com.example.weplan.Fragments.chats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

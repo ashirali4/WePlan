@@ -138,7 +138,7 @@ public class connect_social_account extends AppCompatActivity implements View.On
                 //handleFacebookAccessToken(loginResult.getAccessToken())
                 String access_token=loginResult.getAccessToken().getToken().toString();
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("fbtoken", access_token);
+                editor.putString("", access_token);
                 editor.commit();
                 accesstoken.setText(access_token);
                 facebookbefore.setVisibility(View.GONE);

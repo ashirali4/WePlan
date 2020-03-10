@@ -1,19 +1,31 @@
 package com.example.weplan.Classes;
 
+import android.net.Uri;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
+import com.example.weplan.uploadinfo;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FirebaseHelper {
     public static final List<Services> ITEMS = new ArrayList<Services>();
     DatabaseReference db;
+    private FirebaseStorage firebaseStorage;
+    public StorageReference storageReference;
     public String ashir;
     Boolean saved=null;
     String string;
@@ -100,6 +112,30 @@ public class FirebaseHelper {
 
     }
 
+    public void updateuser(HashMap<String, Object> map )
+    {
+        firebaseStorage = FirebaseStorage.getInstance();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+        ref.updateChildren(map);
 
+    }
 
+    public void changeimage(Uri FilePathUri,String extension) {
+        storageReference = firebaseStorage.getReference();
+        StorageReference storageReference2 = storageReference.child(System.currentTimeMillis() + "." + extension);
+        Uri file = Uri.fromFile(new File(FilePathUri.toString()));
+        storageReference2.putFile(FilePathUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+//                            progressDialog.dismiss();
+                        @SuppressWarnings("VisibleForTests")
+                        uploadinfo imageUploadInfo = new uploadinfo(taskSnapshot.getUploadSessionUri().toString());
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                        String ImageUploadId = databaseReference.push().getKey();
+                        databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
+                    }
+                });
+    }
     }

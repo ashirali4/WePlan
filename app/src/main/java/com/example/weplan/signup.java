@@ -73,12 +73,12 @@ public class signup extends AppCompatActivity {
             return;
         }
 
-        name=nameTV.getText().toString();
-        password=passwordTV.getText().toString();
-        phone=phoneTV.getText().toString();
-        email=emailTV.getText().toString();
-        location=locationTV.getText().toString();
-        pDialog= new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+        name = nameTV.getText().toString();
+        password = passwordTV.getText().toString();
+        phone = phoneTV.getText().toString();
+        email = emailTV.getText().toString();
+        location = locationTV.getText().toString();
+        pDialog = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
         pDialog.setTitleText("Please Wait");
         pDialog.setCancelable(false);
@@ -91,34 +91,30 @@ public class signup extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             pDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                            pDialog .setTitleText("Sccuessfully Registered");
-                            pDialog .setContentText("Connect you Social Accounts");
+                            pDialog.setTitleText("Sccuessfully Registered");
+                            pDialog.setContentText("Connect you Social Accounts");
                             pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
                                 public void onClick(KAlertDialog sDialog) {
                                     Intent intent = new Intent(signup.this, preconnect.class);
                                     startActivity(intent);
-                                    pDialog .dismiss();
-                                    pDialog=null;
+                                    pDialog.dismiss();
+                                    pDialog = null;
 
                                 }
                             });
                             Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
-                            String userKey=mAuth.getCurrentUser().getUid();
-                            dbController.insertUserData(name,password,phone,email,location,userKey);
-
-
-
-                        }
-                        else {
+                            String userKey = mAuth.getCurrentUser().getUid();
+                            dbController.insertUserData(name, password, phone, email, location, userKey);
+                        } else {
                             pDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
-                            pDialog .setTitleText("Error Occured");
-                            pDialog .setContentText("Please Input Again");
+                            pDialog.setTitleText("Error Occured");
+                            pDialog.setContentText("Please Input Again");
                             pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
                                 public void onClick(KAlertDialog sDialog) {
-                                    pDialog .dismiss();
-                                    pDialog=null;
+                                    pDialog.dismiss();
+                                    pDialog = null;
                                 }
                             });
                             Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();

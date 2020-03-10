@@ -52,6 +52,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "160885445674-mssie68l27mjcq57q2lhvt94amn4frpl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.weplan",
+            "certificate_hash": "dd7b2dcdfa4594192b23fcd65942b0d5196bd747"
+          }
+        },
+        {
           "client_id": "160885445674-81g9j3g3lih1c0ki4f40qar3803dujm8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

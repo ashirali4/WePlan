@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 android {
@@ -29,12 +31,19 @@ android {
     }
 
 
+    dataBinding {
+        enabled = true
+    }
+
+
 }
 repositories {
     mavenCentral()
     google()
 
 }
+
+
 dependencies {
 
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.0.0'
@@ -92,5 +101,11 @@ dependencies {
 
     implementation "androidx.cardview:cardview:1.0.0"
 
+    implementation 'gun0912.ted:tedimagepicker:1.0.8'
+
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.cardview:cardview:1.0.0"
 
 }
