@@ -160,7 +160,7 @@ public class login_main extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
                             editor.putString("userid", mAuth.getUid().toString()); // Storing string
-editor.commit();
+                            //editor.commit();
                             Intent intent = new Intent(login_main.this, DashboardActivity.class);
                             startActivity(intent);
                             pDialog.hide();
