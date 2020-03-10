@@ -2,6 +2,7 @@ package com.example.weplan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,8 +32,8 @@ public class login_main extends AppCompatActivity {
     private EditText emailTV, passwordTV;
     private FirebaseAuth mAuth;
     KAlertDialog pDialog;
-    String appID = "14953b559be4c1b"; // Replace with your App Id.
-    String region = "us"; // Replace with the region for your App.
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +41,14 @@ public class login_main extends AppCompatActivity {
         setContentView(R.layout.activity_login_main);
         mAuth = FirebaseAuth.getInstance();
         initializeUI();
-
+         sharedpreferences = getSharedPreferences("userinfo", Context.MODE_PRIVATE );
+       editor = sharedpreferences.edit();
 
 
 
         User user = new User();
-        user.setUserId("alsjdf"); //userId it can be any unique user identifier NOTE : +,*,? are not allowed chars in userId.
-        user.setDisplayName("Ashir Ali"); //displayName is the name of the user which will be shown in chat messages
+        user.setUserId("ch01"); //userId it can be any unique user identifier NOTE : +,*,? are not allowed chars in userId.
+        user.setDisplayName("Saleem Ali"); //displayName is the name of the user which will be shown in chat messages
         user.setEmail(""); //optional
         user.setAuthenticationTypeId(User.AuthenticationType.APPLOZIC.getValue());  //User.AuthenticationType.APPLOZIC.getValue() for password verification from Applozic server and User.AuthenticationType.CLIENT.getValue() for access Token verification from your server set access token as password
         user.setPassword(""); //optional, leave it blank for testing purpose, read this if you want to add additional security by verifying password from your server https://www.applozic.com/docs/configuration.html#access-token-url
@@ -59,8 +61,8 @@ public class login_main extends AppCompatActivity {
 
 
                 Intent intent = new Intent(context, ConversationActivity.class);
-                intent.putExtra(ConversationUIService.USER_ID, "ashirali");
-                intent.putExtra(ConversationUIService.DISPLAY_NAME, "User Name"); //put it for displaying the title.
+                intent.putExtra(ConversationUIService.USER_ID, "ashir");
+                intent.putExtra(ConversationUIService.DISPLAY_NAME, "Ashir Arshad"); //put it for displaying the title.
                 intent.putExtra(ConversationUIService.TAKE_ORDER,true); //Skip chat list for showing on back press
                 startActivity(intent);
                // Intent intent = new Intent(context, ConversationActivity.class);
@@ -157,8 +159,8 @@ public class login_main extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
-
-
+                            editor.putString("userid", mAuth.getUid().toString()); // Storing string
+                            //editor.commit();
                             Intent intent = new Intent(login_main.this, DashboardActivity.class);
                             startActivity(intent);
                             pDialog.hide();
