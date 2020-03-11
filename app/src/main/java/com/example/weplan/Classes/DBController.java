@@ -49,6 +49,21 @@ public class DBController {
 
         usersRef.updateChildren(users);
     }
+
+    public void insertSellerData(String name,String password,String phone,String email,String location,String userKey)
+    {
+        DatabaseReference usersRef = ref.child("Services").child(userKey);
+
+
+        Map<String, Object> users = new HashMap<>();
+        users.put("name", name);
+        users.put("phone",phone);
+        users.put("email",email);
+        users.put("location",location);
+
+        usersRef.updateChildren(users);
+    }
+
     public void insertSocialAccounts(String type,String userKey,String token)
     {
         DatabaseReference usersRef = ref.child("SocialAccounts").child(userKey).child(type);

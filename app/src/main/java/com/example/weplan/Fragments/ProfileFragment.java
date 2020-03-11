@@ -1,5 +1,6 @@
 package com.example.weplan.Fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -96,6 +97,8 @@ public class ProfileFragment extends Fragment {
     Button Update, Edit;
     ImageView imageView;
 
+    SharedPreferences preferences;
+    String userid;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -125,10 +128,7 @@ public class ProfileFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
-
-
     }
 
 
@@ -149,7 +149,11 @@ public class ProfileFragment extends Fragment {
         editbutton=view.findViewById(R.id.editProfile);
         updatebutton=view.findViewById(R.id.updatebutton);
 
+        preferences= this.getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE);
 
+
+
+        firebaseHelper=new FirebaseHelper();
 
 
         Disable();
@@ -159,7 +163,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 chooseimage();
-//                UploadImage();
+               // UploadImage();
             }
         });
         editbutton.setOnClickListener(new View.OnClickListener() {
@@ -173,14 +177,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 HashMap<String, Object> map = new HashMap<>();
-                map.put("name", txtName.getText().toString());
                 map.put("email", username.getText().toString());
-                map.put("phoneNumber", phone.getText().toString());
-                map.put("budget", textPrice.getText().toString());
-                map.put("type", textType.getText().toString());
                 map.put("location", textLocation.getText().toString());
 
-                firebaseHelper.updateuser(map);
+                map.put("name", txtName.getText().toString());
+                map.put("phone", phone.getText().toString());
+               // map.put("price", textPrice.getText().toString());
+
+                firebaseHelper.updateuser(map,userid);
                 UploadImage();
                 Disable();
             }
@@ -192,18 +196,22 @@ public class ProfileFragment extends Fragment {
 
     public void showData() {
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        userid=preferences.getString("userid","notloggedin");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("name").getValue().toString();
-                txtName.setText(name);
                 String Username = dataSnapshot.child("email").getValue().toString();
                 username.setText(Username);
-                String Phone = dataSnapshot.child("phone").getValue().toString();
-                phone.setText(Phone);
                 String Adress = dataSnapshot.child("location").getValue().toString();
                 textLocation.setText(Adress);
+                String name = dataSnapshot.child("name").getValue().toString();
+                txtName.setText(name);
+                String Phone = dataSnapshot.child("phone").getValue().toString();
+                phone.setText(Phone);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -217,7 +225,6 @@ public class ProfileFragment extends Fragment {
         ContentResolver contentResolver = getActivity().getApplicationContext().getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-
     }
 
     public void UploadImage() {
@@ -227,7 +234,9 @@ public class ProfileFragment extends Fragment {
 //            progressDialog.setTitle("Image is Uploading...");
 //            progressDialog.show();
             String extension=GetFileExtension(FilePathUri);
-            firebaseHelper.changeimage(FilePathUri,extension);
+            firebaseHelper.changeimage(FilePathUri,extension,userid);
+            Toast.makeText(getContext(), "Image updated", Toast.LENGTH_LONG).show();
+
 
         } else {
 
@@ -235,8 +244,6 @@ public class ProfileFragment extends Fragment {
 
         }
     }
-
-
     public void chooseimage() {
         TedImagePicker.with(getActivity())
                 .start(new OnSelectedListener() {
@@ -251,7 +258,6 @@ public class ProfileFragment extends Fragment {
                         }
                     }
                 });
-
     }
 
     public void Disable() {
@@ -259,7 +265,6 @@ public class ProfileFragment extends Fragment {
         username.setEnabled(false);
         phone.setEnabled(false);
         textLocation.setEnabled(false);
-        textType.setEnabled(false);
         textPrice.setEnabled(false);
     }
 
@@ -268,7 +273,6 @@ public class ProfileFragment extends Fragment {
         username.setEnabled(true);
         phone.setEnabled(true);
         textLocation.setEnabled(true);
-        textType.setEnabled(true);
         textPrice.setEnabled(true);
     }
 

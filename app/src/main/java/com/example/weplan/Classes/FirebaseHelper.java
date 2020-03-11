@@ -27,20 +27,23 @@ public class FirebaseHelper {
     private FirebaseStorage firebaseStorage;
     public StorageReference storageReference;
     public String ashir;
-    Boolean saved=null;
+    Boolean saved = null;
     String string;
 
-    ArrayList<Services> arrayList=new ArrayList();
-    ArrayList<servicelist> servicelist=new ArrayList();
-    public interface Callback{
+    ArrayList<Services> arrayList = new ArrayList();
+    ArrayList<servicelist> servicelist = new ArrayList();
+
+    public interface Callback {
         void onSuccess(ArrayList<Services> arrayList);
+
         void onFailure(Exception e);
 
 
     }
 
-    public interface servicecallback{
+    public interface servicecallback {
         void onSuccess(ArrayList<servicelist> arrayList);
+
         void onFailure(Exception e);
 
 
@@ -59,8 +62,7 @@ public class FirebaseHelper {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot: dataSnapshot.getChildren())
-                {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Services services = new Services();
                     services.servicename = snapshot.child("servicename").getValue().toString();
                     services.location = snapshot.child("location").getValue().toString();
@@ -91,12 +93,10 @@ public class FirebaseHelper {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot: dataSnapshot.getChildren())
-                {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     servicelist services = new servicelist();
                     services.sname = snapshot.child("servicename").getValue().toString();
                     services.logolink = snapshot.child("logo").getValue().toString();
-
 
 
                     servicelist.add(services);
@@ -112,30 +112,41 @@ public class FirebaseHelper {
 
     }
 
-    public void updateuser(HashMap<String, Object> map )
-    {
+    public void updateuser(HashMap<String, Object> map,String userid) {
         firebaseStorage = FirebaseStorage.getInstance();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
         ref.updateChildren(map);
 
     }
 
-    public void changeimage(Uri FilePathUri,String extension) {
+    public void changeimage(Uri FilePathUri, String extension, final String userid) {
         storageReference = firebaseStorage.getReference();
-        StorageReference storageReference2 = storageReference.child(System.currentTimeMillis() + "." + extension);
+        final StorageReference storageReference2 = storageReference.child(System.currentTimeMillis() + "." + extension);
         Uri file = Uri.fromFile(new File(FilePathUri.toString()));
         storageReference2.putFile(FilePathUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-//                            progressDialog.dismiss();
-                        @SuppressWarnings("VisibleForTests")
-                        uploadinfo imageUploadInfo = new uploadinfo(taskSnapshot.getUploadSessionUri().toString());
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                        String ImageUploadId = databaseReference.push().getKey();
-                        databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
+
+
+                        storageReference2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String url = uri.toString();
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+
+                                uploadinfo upload = new uploadinfo("imagename", url);
+
+                                databaseReference.child("image").setValue(upload);
+                            }
+                        });
+                        //uploadinfo imageUploadInfo = new uploadinfo(taskSnapshot.getUploadSessionUri().toString());
+                       //String ImageUploadId = databaseReference.push().getKey();
+                        //databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
                     }
                 });
     }
-    }
+}
+
+
