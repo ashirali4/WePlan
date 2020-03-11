@@ -76,7 +76,7 @@ public class DBController {
     }
     public void removeSocialAccounts(String type,String uid){
         DatabaseReference usersRef = ref.child("SocialAccounts").child(uid).child(type);
-        ref.removeValue();
+        usersRef.removeValue();
     }
 
 

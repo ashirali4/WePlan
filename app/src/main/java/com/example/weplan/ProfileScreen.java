@@ -1,13 +1,16 @@
 package com.example.weplan;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.developer.kalert.KAlertDialog;
 import com.squareup.picasso.Picasso;
 
 public class ProfileScreen extends AppCompatActivity {
@@ -16,7 +19,8 @@ public class ProfileScreen extends AppCompatActivity {
     TextView textName,textType,textPrice,textLocation;
     RatingBar ratingbar;
     ImageView image;
-
+    KAlertDialog pDialog;
+    private Handler mHandler;
     String service_name,location,budget,imageLink;
     Float ratingfloat;
 
@@ -24,10 +28,14 @@ public class ProfileScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_screen);
-
+        pDialog = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        pDialog.show();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
+        mHandler=new Handler();
         if (bundle.getString("name").equals(null)) {
             service_name="Name here";
 
@@ -53,6 +61,13 @@ public class ProfileScreen extends AppCompatActivity {
             textPrice.setText(budget);
             textLocation.setText(location);
             ratingbar.setRating(ratingfloat);
+
+            mHandler.postDelayed(new Runnable() {
+                public void run() {
+
+                    pDialog.hide();
+                }
+            }, 500);
         }
 
 

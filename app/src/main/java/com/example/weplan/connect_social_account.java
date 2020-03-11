@@ -266,4 +266,9 @@ public class connect_social_account extends AppCompatActivity implements View.On
         googles.setText(null);
         user.removeSocialAccount("Google",mAuth.getCurrentUser().getUid());
     }
+
+    public void viewdata(View view) {
+        Intent intent=new Intent(connect_social_account.this,ViewFeedback.class);
+        startActivity(intent);
+    }
 }
