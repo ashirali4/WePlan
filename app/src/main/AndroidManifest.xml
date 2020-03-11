@@ -13,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+        <activity android:name=".Reviews.GoogleReviews">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.applozic.application.key"
@@ -84,7 +91,7 @@
         </activity>
         <activity android:name=".ViewFeedback" />
         <activity android:name=".preconnect" />
-        <activity android:name=".connect_social_account" >
+        <activity android:name=".connect_social_account">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -99,6 +106,7 @@
         <activity android:name=".DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
