@@ -1,7 +1,9 @@
 package com.example.weplan;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,8 +28,16 @@ TextView rating,countt,fbname;
        fbname=findViewById(R.id.facebookpage);
                 rating=findViewById(R.id.rating);
         countt=findViewById(R.id.ratingcount);
+        Handler mhandler=new Handler();
+        Toast.makeText(this, ""+AccessToken.getCurrentAccessToken().toString(), Toast.LENGTH_SHORT).show();
 
-        GraphRequest request = GraphRequest.newGraphPathRequest(
+        mhandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        },1000);
+       GraphRequest request = GraphRequest.newGraphPathRequest(
                 AccessToken.getCurrentAccessToken(),
                 "/106821374127944?fields=overall_star_rating,rating_count,name",
                 new GraphRequest.Callback() {

@@ -24,37 +24,46 @@ tools:context=".MainActivity">
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="10dp"
                 android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/profileimage"
-                android:layout_width="300px"
-                android:layout_height="300px"
-                android:layout_gravity="left"
-                android:layout_marginLeft="30dp"
-                app:srcCompat="@drawable/ic_user" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/profileimage"
+                    android:layout_width="120dp"
+android:layout_marginTop="5dp"
+                    android:layout_height="120dp"
+
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/recimagthree"
+                    app:riv_corner_radius="90dp" />
 
                 <TextView
                     android:id="@+id/serviceType"
+                    android:fontFamily="@font/poppins_bold"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="10dp"
                     android:text="Service Company"
+                    android:layout_gravity="center"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="10sp" />
 
                 <RatingBar
                     android:id="@+id/ratingstar"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+
                     android:layout_marginTop="10dp"
                     android:isIndicator="true"
                     android:numStars="5"
@@ -65,7 +74,8 @@ tools:context=".MainActivity">
                 android:layout_width="130dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="35dp"
+
+android:layout_marginLeft="15dp"
                 android:text="Call Directly"
                 android:textSize="9sp"
                 android:textColor="@color/white"
@@ -74,56 +84,124 @@ tools:context=".MainActivity">
                 android:backgroundTint="@color/dark_blue"/>
 
             </LinearLayout>
+
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="#ffffff"
                     android:text="Saleem Arshad"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="#000"/>
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView22"
+                        android:layout_width="20dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_location" />
 
                     <TextView
                         android:id="@+id/location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="17dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="8dp"
+
                         android:text="Lahore"
+                        android:fontFamily="@font/poppins_medium"
+
                         android:textColor="@color/black"
                         android:textSize="15sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="20dp"
+
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_dollar" />
 
                     <TextView
-                        android:id="@+id/price"
+
+                    android:id="@+id/price"
+                        android:fontFamily="@font/poppins_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:text="Price"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/phonee"
+                        android:layout_width="20dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_phone" />
+
+                    <TextView
+
+                        android:id="@+id/phone"
+                        android:fontFamily="@font/poppins_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="17dp"
-                        android:text="Price"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="2dp"
+                        android:text="+92 300 6568114"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                   android:layout_marginRight="50dp"
+                    android:layout_marginTop="5dp"
+
+                    android:background="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="65dp">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/sendMessage"
+                        android:layout_width="130dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="50dp"
+                        android:backgroundTint="@color/dark_blue"
+                        android:text="Send Message"
+                        android:textColor="@color/white"
+                        android:textSize="9sp"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_chat_black_24dp" />
+
+                </LinearLayout>
 
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/sendMessage"
-                    android:layout_width="130dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="73dp"
-                    android:text="Send Message"
-                    android:textSize="9sp"
-                    android:textColor="@color/white"
-                    app:icon="@drawable/ic_chat_black_24dp"
-                    app:cornerRadius="20dp"
-                    android:backgroundTint="@color/dark_blue"/>
+
 
             </LinearLayout>
         </LinearLayout>
@@ -139,15 +217,19 @@ tools:context=".MainActivity">
         </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp">
+                android:layout_marginTop="15dp"
+               android:layout_marginLeft="30dp">
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/fbbutton"
                     android:layout_width="60dp"
                     android:layout_height="70dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+
                     app:cornerRadius="15dp"
                     app:icon="@drawable/social" />
 
@@ -156,10 +238,10 @@ tools:context=".MainActivity">
                     android:layout_width="60dp"
                     android:layout_height="70dp"
                     android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/white"
                     app:cornerRadius="15dp"
                     app:icon="@drawable/google"
-                    app:iconTint="@null"
-                    android:backgroundTint="@color/white"/>
+                    app:iconTint="@null" />
 
 
             </LinearLayout>

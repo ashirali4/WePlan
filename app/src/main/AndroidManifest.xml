@@ -84,7 +84,13 @@
         </activity>
         <activity android:name=".ViewFeedback" />
         <activity android:name=".preconnect" />
-        <activity android:name=".connect_social_account" />
+        <activity android:name=".connect_social_account" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".thanks" />
         <activity android:name=".login_main" />
         <activity android:name=".Intro" />
@@ -93,7 +99,6 @@
         <activity android:name=".DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

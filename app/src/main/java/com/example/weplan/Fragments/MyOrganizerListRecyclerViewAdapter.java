@@ -2,17 +2,18 @@ package com.example.weplan.Fragments;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.developer.kalert.KAlertDialog;
 import com.example.weplan.Classes.Services;
 import com.example.weplan.ProfileScreen;
 import com.example.weplan.R;
@@ -26,6 +27,9 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
     private final List<Services> mValues;
     private final OrganizerListFragment.OnListFragmentInteractionListener mmListener;
     public ProfileScreen profileScreen;
+    KAlertDialog pDialog;
+    private Handler mHandler;
+
 
     public MyOrganizerListRecyclerViewAdapter(List<Services> items, OrganizerListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
@@ -48,7 +52,7 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         final Float ratingFloat=Float.parseFloat(rating);
         final String budget=mValues.get(position).startb;
         final String imagelink=mValues.get(position).imglink;
-
+        mHandler=new Handler();
         holder.organizername.setText(name);
         holder.locationorg.setText(location);
         holder.ratingorg.setText(rating);
@@ -59,7 +63,7 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 if (null != mmListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
@@ -71,9 +75,21 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
                     bundle.putFloat("rating",ratingFloat);
                     bundle.putString("budget",budget);
                     bundle.putString("imageLink",imagelink);
-                    Intent intent=new Intent(v.getContext(), ProfileScreen.class);
+                    final Intent intent=new Intent(v.getContext(), ProfileScreen.class);
                     intent.putExtras(bundle);
-                    v.getContext().startActivity(intent);
+                    pDialog = new KAlertDialog(v.getContext(), KAlertDialog.PROGRESS_TYPE);
+                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
+                    pDialog.setTitleText("Please Wait");
+                    pDialog.setCancelable(false);
+                    pDialog.show();
+
+                    mHandler.postDelayed(new Runnable() {
+                        public void run() {
+                            v.getContext().startActivity(intent);
+                            pDialog.hide();
+                        }
+                    }, 1000);
+
 
                 }
             }
