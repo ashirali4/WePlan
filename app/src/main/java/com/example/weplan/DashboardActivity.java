@@ -23,6 +23,7 @@ import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComQuickConve
 import com.example.weplan.Fragments.Accounts;
 import com.example.weplan.Fragments.Home_Dashboard_Featured;
 import com.example.weplan.Fragments.Location;
+import com.example.weplan.Fragments.ProfileFragment;
 import com.example.weplan.Fragments.chats;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -114,11 +115,13 @@ public class DashboardActivity extends FragmentActivity implements Accounts.OnFr
                             selectedFragment = new Home_Dashboard_Featured();
                             break;
                         case R.id.nav_favorites:
-                            selectedFragment =  mobiComQuickConversationFragment;
+                            selectedFragment =  new ProfileFragment();
                             break;
                         case R.id.nav_search:
                             selectedFragment = new Location();
-                            break;}
+                            break;
+
+                    }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();

@@ -52,6 +52,9 @@ public class connect_social_account extends AppCompatActivity implements View.On
     LinearLayout googlebefore,facebookbefore,googleafter,facebookafter;
     LoginButton loginButton;
     GoogleSignInClient mGoogleSignInClient;
+    SharedPreferences preferences;
+    String sellerid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +70,8 @@ public class connect_social_account extends AppCompatActivity implements View.On
         googles=findViewById(R.id.googles);
         initializeUI();
 
-
-
+        preferences= this.getSharedPreferences("sellerinfo", Context.MODE_PRIVATE);
+        sellerid=preferences.getString("sellerid","notloggedin");
 
 
         mCallbackManager = CallbackManager.Factory.create();
@@ -138,7 +141,7 @@ public class connect_social_account extends AppCompatActivity implements View.On
                 //handleFacebookAccessToken(loginResult.getAccessToken())
                 String access_token=loginResult.getAccessToken().getToken().toString();
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("fbtoken", access_token);
+                editor.putString("", access_token);
                 editor.commit();
                 accesstoken.setText(access_token);
                 facebookbefore.setVisibility(View.GONE);

@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class login_main extends AppCompatActivity {
     private EditText emailTV, passwordTV;
@@ -34,6 +40,9 @@ public class login_main extends AppCompatActivity {
     KAlertDialog pDialog;
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
+    DatabaseReference reference;
+    TextView textView,signin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,8 @@ public class login_main extends AppCompatActivity {
          sharedpreferences = getSharedPreferences("userinfo", Context.MODE_PRIVATE );
        editor = sharedpreferences.edit();
 
+       textView=findViewById(R.id.textview1);
+       signin=findViewById(R.id.organizerSignIn);
 
 
         User user = new User();
@@ -159,8 +170,28 @@ public class login_main extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
-                            editor.putString("userid", mAuth.getUid().toString()); // Storing string
-                            //editor.commit();
+                            String uid=mAuth.getUid().toString();
+                            editor.putString("userid", uid); // Storing string
+                            reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    String Username = dataSnapshot.child("email").getValue().toString();
+                                    editor.putString("email",Username);
+                                    Toast.makeText(login_main.this, Username, Toast.LENGTH_SHORT).show();
+                                    String Adress = dataSnapshot.child("location").getValue().toString();
+                                    editor.putString("location",Adress);
+                                    String name = dataSnapshot.child("name").getValue().toString();
+                                    editor.putString("name",name);
+                                    String Phone = dataSnapshot.child("phone").getValue().toString();
+                                    editor.putString("phone",Phone);
+                                  //  editor.commit();
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                             Intent intent = new Intent(login_main.this, DashboardActivity.class);
                             startActivity(intent);
                             pDialog.hide();
@@ -186,5 +217,10 @@ public class login_main extends AppCompatActivity {
 
     public void backbut(View view) {
 
+    }
+
+    public void showOrganizerLogin(View view) {
+        Intent intent=new Intent(this,SellerSignIn.class);
+        startActivity(intent);
     }
 }
