@@ -52,6 +52,7 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         final Float ratingFloat=Float.parseFloat(rating);
         final String budget=mValues.get(position).startb;
         final String imagelink=mValues.get(position).imglink;
+        final String placeid=mValues.get(position).placeid;
         mHandler=new Handler();
         holder.organizername.setText(name);
         holder.locationorg.setText(location);
@@ -75,6 +76,7 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
                     bundle.putFloat("rating",ratingFloat);
                     bundle.putString("budget",budget);
                     bundle.putString("imageLink",imagelink);
+                    bundle.putString("placeid",placeid);
                     final Intent intent=new Intent(v.getContext(), ProfileScreen.class);
                     intent.putExtras(bundle);
                     pDialog = new KAlertDialog(v.getContext(), KAlertDialog.PROGRESS_TYPE);

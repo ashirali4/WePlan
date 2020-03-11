@@ -12,6 +12,7 @@ public class Services {
     public String endb;
     public ImageView imageview;
     public Bitmap imgbitmap;
+    public String placeid;
     public Services(){
 
 

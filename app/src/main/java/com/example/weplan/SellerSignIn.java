@@ -1,8 +1,5 @@
 package com.example.weplan;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,21 +9,15 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.developer.kalert.KAlertDialog;
-import com.example.weplan.Classes.Services;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.IOError;
-import java.io.IOException;
 
 import static java.lang.System.exit;
 
@@ -63,9 +54,13 @@ public class SellerSignIn extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    sellerid= snapshot.getKey();
+                    sellerid= snapshot.getValue().toString();
                     if(sellerid==textsellerId.toString()) {
                         editor.putString("sellerid", sellerid); // Storing string
+                        editor.commit();
+                        Toast.makeText(SellerSignIn.this, "check"+sellerid.toString(), Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(getApplicationContext(),SellerDashboard.class);
+                        startActivity(intent);
                         exit(0);
                     }
                 }
@@ -75,8 +70,7 @@ public class SellerSignIn extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        Intent intent=new Intent(this,connect_social_account.class);
-        startActivity(intent);
+
     }
     public void createSeller(View view) {
 

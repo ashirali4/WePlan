@@ -185,7 +185,7 @@ public class login_main extends AppCompatActivity {
                                     editor.putString("name",name);
                                     String Phone = dataSnapshot.child("phone").getValue().toString();
                                     editor.putString("phone",Phone);
-                                  //  editor.commit();
+                                   editor.commit();
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {

@@ -43,7 +43,7 @@
             app:icon="@drawable/social"
             android:textColor="#ffffff"
             android:textSize="15sp"
-            android:onClick="googleBusiness"
+            android:onClick="googleyou"
             app:cornerRadius="20dp"/>
 
     </LinearLayout>

@@ -1,7 +1,6 @@
 package com.example.weplan.Classes;
 
 import android.net.Uri;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -70,8 +69,9 @@ public class FirebaseHelper {
                     services.imglink = snapshot.child("link").getValue().toString();
                     services.startb = snapshot.child("sb").getValue().toString();
                     services.endb = snapshot.child("eb").getValue().toString();
-
-
+                    if(snapshot.child("placeid").exists()) {
+                        services.placeid = snapshot.child("placeid").getValue().toString();
+                    }
                     arrayList.add(services);
                 }
                 callback.onSuccess(arrayList);
@@ -117,6 +117,18 @@ public class FirebaseHelper {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
         ref.updateChildren(map);
 
+    }
+    public void pushorganizerplace(String userid,String value) {
+        firebaseStorage = FirebaseStorage.getInstance();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Services").child(userid);
+        ref.child("placeid").setValue(value);
+
+    }
+    public String getplaceid(String userid,String value) {
+        firebaseStorage = FirebaseStorage.getInstance();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Services").child(userid);
+        String key=ref.child("placeid").getKey();
+        return key;
     }
 
     public void changeimage(Uri FilePathUri, String extension, final String userid) {

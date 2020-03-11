@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.developer.kalert.KAlertDialog;
+import com.example.weplan.Reviews.GoogleReviews;
 import com.squareup.picasso.Picasso;
 
 public class ProfileScreen extends AppCompatActivity {
@@ -21,7 +23,7 @@ public class ProfileScreen extends AppCompatActivity {
     ImageView image;
     KAlertDialog pDialog;
     private Handler mHandler;
-    String service_name,location,budget,imageLink;
+    String service_name,location,budget,imageLink,placeid;
     Float ratingfloat;
 
     @Override
@@ -46,7 +48,7 @@ public class ProfileScreen extends AppCompatActivity {
             ratingfloat = bundle.getFloat("rating");
             budget = bundle.getString("budget");
             imageLink = bundle.getString("imageLink");
-
+            placeid=bundle.getString("placeid");
             textName = findViewById(R.id.name);
             textType = findViewById(R.id.serviceType);
             textPrice = findViewById(R.id.price);
@@ -71,5 +73,13 @@ public class ProfileScreen extends AppCompatActivity {
         }
 
 
+    }
+
+    public void googlepage(View view) {
+        Bundle bundle=new Bundle();
+        bundle.putString("placeid",placeid);
+        Intent intent=new Intent(ProfileScreen.this, GoogleReviews.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
