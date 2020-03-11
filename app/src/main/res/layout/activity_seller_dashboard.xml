@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bcolor"
+    tools:context=".SellerDashboard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editProfile"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="View Chats"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/ic_chat_black_24dp"
+            app:iconGravity="textStart"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/updatebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:text="Connect Social Accounts"
+            app:icon="@drawable/social"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            app:cornerRadius="20dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/googlebusiness"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:text="Connect Social Accounts"
+            app:icon="@drawable/social"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:onClick="googleBusiness"
+            app:cornerRadius="20dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
