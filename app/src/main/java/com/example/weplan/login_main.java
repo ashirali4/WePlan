@@ -17,12 +17,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.applozic.mobicomkit.Applozic;
-import com.applozic.mobicomkit.api.account.register.RegistrationResponse;
-import com.applozic.mobicomkit.api.account.user.User;
-import com.applozic.mobicomkit.listners.AlLoginHandler;
-import com.applozic.mobicomkit.uiwidgets.conversation.ConversationUIService;
-import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
 import com.developer.kalert.KAlertDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +36,8 @@ public class login_main extends AppCompatActivity {
     SharedPreferences.Editor editor;
     DatabaseReference reference;
     TextView textView,signin;
+    String useridfor;
+    String namel;
 
 
     @Override
@@ -57,34 +53,7 @@ public class login_main extends AppCompatActivity {
        signin=findViewById(R.id.organizerSignIn);
 
 
-        User user = new User();
-        user.setUserId("ch01"); //userId it can be any unique user identifier NOTE : +,*,? are not allowed chars in userId.
-        user.setDisplayName("Saleem Ali"); //displayName is the name of the user which will be shown in chat messages
-        user.setEmail(""); //optional
-        user.setAuthenticationTypeId(User.AuthenticationType.APPLOZIC.getValue());  //User.AuthenticationType.APPLOZIC.getValue() for password verification from Applozic server and User.AuthenticationType.CLIENT.getValue() for access Token verification from your server set access token as password
-        user.setPassword(""); //optional, leave it blank for testing purpose, read this if you want to add additional security by verifying password from your server https://www.applozic.com/docs/configuration.html#access-token-url
-        user.setImageLink("");//optional, set your image link if you have
 
-        Applozic.connectUser(this, user, new AlLoginHandler() {
-            @Override
-            public void onSuccess(RegistrationResponse registrationResponse, Context context) {
-              Toast.makeText(context, "user created", Toast.LENGTH_SHORT).show();
-
-
-                Intent intent = new Intent(context, ConversationActivity.class);
-                intent.putExtra(ConversationUIService.USER_ID, "ashir");
-                intent.putExtra(ConversationUIService.DISPLAY_NAME, "Ashir Arshad"); //put it for displaying the title.
-                intent.putExtra(ConversationUIService.TAKE_ORDER,true); //Skip chat list for showing on back press
-                startActivity(intent);
-               // Intent intent = new Intent(context, ConversationActivity.class);
-               // startActivity(intent);
-            }
-
-            @Override
-            public void onFailure(RegistrationResponse registrationResponse, Exception exception) {
-                Toast.makeText(login_main.this, "Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
@@ -171,10 +140,12 @@ public class login_main extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
                             String uid=mAuth.getUid().toString();
+                            useridfor=uid;
                             editor.putString("userid", uid); // Storing string
                             reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
                             reference.addValueEventListener(new ValueEventListener() {
                                 @Override
+
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     String Username = dataSnapshot.child("email").getValue().toString();
                                     editor.putString("email",Username);
@@ -182,19 +153,31 @@ public class login_main extends AppCompatActivity {
                                     String Adress = dataSnapshot.child("location").getValue().toString();
                                     editor.putString("location",Adress);
                                     String name = dataSnapshot.child("name").getValue().toString();
+                                    namel=dataSnapshot.child("name").getValue().toString();
                                     editor.putString("name",name);
                                     String Phone = dataSnapshot.child("phone").getValue().toString();
                                     editor.putString("phone",Phone);
-                                   editor.commit();
+                                    editor.commit();
+
+
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                 }
                             });
-                            Intent intent = new Intent(login_main.this, DashboardActivity.class);
-                            startActivity(intent);
-                            pDialog.hide();
+
+                            Handler mhandler=new Handler();
+                            mhandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(login_main.this, DashboardActivity.class);
+                                    startActivity(intent);
+                                    pDialog.hide();
+                                }
+                            },3000);
+
+
                         }
                         else {
                             pDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
@@ -223,4 +206,6 @@ public class login_main extends AppCompatActivity {
         Intent intent=new Intent(this,SellerSignIn.class);
         startActivity(intent);
     }
+
+
 }

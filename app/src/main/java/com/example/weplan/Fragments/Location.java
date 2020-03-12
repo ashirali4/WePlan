@@ -18,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.developer.kalert.KAlertDialog;
 import com.example.weplan.Adapters.Adapter;
 import com.example.weplan.Adapters.Servicehomeadapter;
+import com.example.weplan.Classes.FirebaseHelper;
+import com.example.weplan.Classes.Services;
+import com.example.weplan.Classes.servicelist;
 import com.example.weplan.R;
 
 import java.util.ArrayList;
@@ -35,7 +38,8 @@ public class Location extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+  //  ArrayList<Services> templist;
+    FirebaseHelper helper;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2; public RecyclerView recyclerView;
@@ -44,8 +48,8 @@ public class Location extends Fragment {
     KAlertDialog pDialog;
 
     // Array list for recycler view data source
-    ArrayList<String> source;
-
+    ArrayList<Services> source;
+    ArrayList<servicelist> sources;
     // Layout Manager
     RecyclerView.LayoutManager RecyclerViewLayoutManager;
     RecyclerView.LayoutManager RecyclerViewLayoutManagerr;
@@ -102,6 +106,7 @@ View view;
         pDialog.setTitleText("Please Wait");
         pDialog.setCancelable(false);
         pDialog.show();
+
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerVieww = view.findViewById(R.id.servicesslist);
         RecyclerViewLayoutManager
@@ -118,8 +123,10 @@ View view;
 
         // calling constructor of adapter
         // with source list as a parameter
-        adapter = new Adapter(source);
-        serviceadapter=new Servicehomeadapter(source);
+
+
+
+    serviceadapter=new Servicehomeadapter(sources);
         // Set Horizontal Layout Manager
         // for Recycler view
         HorizontalLayout
@@ -146,7 +153,7 @@ View view;
                 recyclerView.setAdapter(adapter);
                 recyclerVieww.setAdapter(serviceadapter);
             }
-        }, 2000);
+        }, 5000);
 
 
         return view;
@@ -165,16 +172,39 @@ View view;
         }
     }
     public void AddItemsToRecyclerViewArrayList()
+
+
     {
+        sources=new ArrayList<servicelist>();
+        servicelist s_list=new servicelist();
+        s_list.sname="Food";
+        s_list.logolink="https://pngimage.net/wp-content/uploads/2018/06/food-png-icon-6.png";
+        servicelist s_list1=new servicelist();
+        s_list1.sname="Photography";
+        s_list1.logolink="https://www.pngkit.com/png/full/50-500826_open-camera-circle-icon.png";
+        sources.add(s_list1);
+        sources.add(s_list);
+        servicelist s2=new servicelist();
+        s2.sname="Venue";
+        s2.logolink="https://i.ya-webdesign.com/images/red-marker-circle-png-15.png";
+        sources.add(s2);
         // Adding items to ArrayList
         source = new ArrayList<>();
-        source.add("gfg");
-        source.add("is");
-        source.add("best");
-        source.add("site");
-        source.add("for");
-        source.add("interview");
-        source.add("preparation");
+      //  Services service=new Services();
+     //   service.id="ashir";
+        helper = new FirebaseHelper();
+        helper.getlist(new FirebaseHelper.Callback() {
+            @Override
+            public void onFailure(Exception e) {
+            }
+            @Override
+            public void onSuccess(ArrayList<Services> arrayList) {
+                source=arrayList;
+                adapter = new Adapter(arrayList);
+            }
+        });
+
+
     }
     @Override
     public void onAttach(Context context) {

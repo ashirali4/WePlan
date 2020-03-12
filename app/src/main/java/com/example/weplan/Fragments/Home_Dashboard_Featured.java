@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +18,9 @@ import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 
 import com.developer.kalert.KAlertDialog;
+import com.example.weplan.Main2Activity;
 import com.example.weplan.R;
 import com.example.weplan.requirement;
-
-import io.kommunicate.KmConversationBuilder;
-import io.kommunicate.Kommunicate;
-import io.kommunicate.callbacks.KmCallback;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -103,19 +99,8 @@ public class Home_Dashboard_Featured extends Fragment {
                 pDialog.show();
                 mHandler.postDelayed(new Runnable() {
                     public void run() {
-                        Kommunicate.init(getContext(), "3cb88d86ea338624912c3ae5aaaa52664");
-                        new KmConversationBuilder(getContext())
-                                .launchConversation(new KmCallback() {
-                                    @Override
-                                    public void onSuccess(Object message) {
-                                        Log.d("Conversation", "Success : " + message);
-                                    }
-
-                                    @Override
-                                    public void onFailure(Object error) {
-                                        Log.d("Conversation", "Failure : " + error);
-                                    }
-                                });
+                        Intent intent = new Intent(getActivity(), Main2Activity.class);
+                        startActivity(intent);
                         pDialog.hide();
                     }
                 }, 3000);

@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+        <activity android:name=".Reviews.Facebook">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Main2Activity" />
+
         <activity android:name=".SellerDashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.applozic.application.key"
             android:value="89ce1b79efa982291e94f273002ccbe4" /> <!-- Replace with your Applozic App ID -->
@@ -111,7 +121,6 @@
         <activity android:name=".verifyphonenumber" />
         <activity android:name=".phonesignup" />
         <activity android:name=".DashboardActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -120,7 +129,7 @@
         </activity>
         <activity android:name=".signup" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Reviews.GoogleReviews" >
+        <activity android:name=".Reviews.GoogleReviews">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,11 +3,14 @@ package com.example.weplan.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weplan.Classes.Services;
 import com.example.weplan.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -16,7 +19,8 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
 
     // List with String type
-    private List<String> list;
+
+    private List<Services> list;
 
     // View Holder class which
     // extends RecyclerView.ViewHolder
@@ -24,8 +28,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
             extends RecyclerView.ViewHolder {
 
         // Text View
-        TextView textView;
-
+        TextView rating,name,bud,img;
+        ImageView imageview;
         // parameterised constructor for View Holder class
         // which takes the view as a parameter
         public MyView(View view)
@@ -33,14 +37,20 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
             super(view);
 
             // initialise TextView with id
-            textView = (TextView)view
-                    .findViewById(R.id.textview);
+            rating = (TextView)view
+                    .findViewById(R.id.featuredratimg);
+            name = (TextView)view
+                    .findViewById(R.id.featuredname);
+            bud = (TextView)view
+                    .findViewById(R.id.featuredprice);
+            imageview = (ImageView)view
+                    .findViewById(R.id.featuredimage);
         }
     }
 
     // Constructor for adapter class
     // which takes a list of String type
-    public Adapter(List<String> horizontalList)
+    public Adapter(List<Services> horizontalList)
     {
         this.list = horizontalList;
     }
@@ -75,10 +85,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyView> {
     public void onBindViewHolder(final MyView holder,
                                  final int position)
     {
-
         // Set the text of each item of
         // Recycler view with the list items
-        holder.textView.setText(list.get(position));
+        holder.rating.setText(list.get(position).rating);
+        holder.bud.setText(list.get(position).endb);
+        holder.name.setText(list.get(position).servicename);
+        Picasso.get().load(list.get(position).imglink).into(holder.imageview);
     }
 
     // Override getItemCount which Returns

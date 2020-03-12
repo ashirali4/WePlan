@@ -63,14 +63,22 @@ public class FirebaseHelper {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Services services = new Services();
+                    services.id= snapshot.getKey();
                     services.servicename = snapshot.child("servicename").getValue().toString();
                     services.location = snapshot.child("location").getValue().toString();
                     services.rating = snapshot.child("rating").getValue().toString();
                     services.imglink = snapshot.child("link").getValue().toString();
                     services.startb = snapshot.child("sb").getValue().toString();
                     services.endb = snapshot.child("eb").getValue().toString();
+
                     if(snapshot.child("placeid").exists()) {
                         services.placeid = snapshot.child("placeid").getValue().toString();
+                    }
+                    if(snapshot.child("fb").exists()) {
+                        services.fb=snapshot.child("fb").getValue().toString();
+                    }
+                    if(snapshot.child("token").exists()) {
+                        services.fb=snapshot.child("token").getValue().toString();
                     }
                     arrayList.add(services);
                 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Reviews.GoogleReviews">
+    tools:context=".Reviews.Facebook">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
-            android:text="Google Profile"
+            android:text="Facebook Profile"
             android:textSize="25sp" />
 
         <LinearLayout
@@ -62,7 +62,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/googleee" />
+                app:srcCompat="@drawable/ic_facebook" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/placenamelayout"
+                    android:id="@+id/fbname"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -94,7 +94,7 @@
                         app:srcCompat="@drawable/ic_team" />
 
                     <TextView
-                        android:id="@+id/ratincountlayout"
+                        android:id="@+id/fbratingcount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -118,7 +118,7 @@
                         app:srcCompat="@drawable/ic_star" />
 
                     <TextView
-                        android:id="@+id/ratinglayout"
+                        android:id="@+id/fbrating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -168,7 +168,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/commentlist"
+        android:id="@+id/fblist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="30dp"

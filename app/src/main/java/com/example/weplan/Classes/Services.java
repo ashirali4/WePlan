@@ -13,6 +13,9 @@ public class Services {
     public ImageView imageview;
     public Bitmap imgbitmap;
     public String placeid;
+    public String id;
+    public String fb;
+    public String token;
     public Services(){
 
 

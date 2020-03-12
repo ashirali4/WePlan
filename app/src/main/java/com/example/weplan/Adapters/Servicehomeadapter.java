@@ -3,11 +3,14 @@ package com.example.weplan.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weplan.Classes.servicelist;
 import com.example.weplan.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -15,7 +18,7 @@ import java.util.List;
 public class Servicehomeadapter extends RecyclerView.Adapter<Servicehomeadapter.MyView> {
 
     // List with String type
-    private List<String> list;
+    private List<servicelist> list;
 
     // View Holder class which
     // extends RecyclerView.ViewHolder
@@ -24,6 +27,7 @@ public class Servicehomeadapter extends RecyclerView.Adapter<Servicehomeadapter.
 
         // Text View
         TextView textView;
+        ImageView icon;
 
         // parameterised constructor for View Holder class
         // which takes the view as a parameter
@@ -33,13 +37,15 @@ public class Servicehomeadapter extends RecyclerView.Adapter<Servicehomeadapter.
 
             // initialise TextView with id
             textView = (TextView)view
-                    .findViewById(R.id.textview);
+                    .findViewById(R.id.s_title);
+            icon=(ImageView)view.findViewById(R.id.image3);
+
         }
     }
 
     // Constructor for adapter class
     // which takes a list of String type
-    public Servicehomeadapter(List<String> horizontalList)
+    public Servicehomeadapter(List<servicelist> horizontalList)
     {
         this.list = horizontalList;
     }
@@ -77,7 +83,8 @@ public class Servicehomeadapter extends RecyclerView.Adapter<Servicehomeadapter.
 
         // Set the text of each item of
         // Recycler view with the list items
-        holder.textView.setText(list.get(position));
+        holder.textView.setText(list.get(position).sname);
+        Picasso.get().load(list.get(position).logolink).into(holder.icon);
     }
 
     // Override getItemCount which Returns

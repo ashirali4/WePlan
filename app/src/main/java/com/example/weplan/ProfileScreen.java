@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.applozic.mobicomkit.uiwidgets.conversation.ConversationUIService;
+import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
 import com.developer.kalert.KAlertDialog;
+import com.example.weplan.Reviews.Facebook;
 import com.example.weplan.Reviews.GoogleReviews;
 import com.squareup.picasso.Picasso;
 
@@ -23,7 +26,7 @@ public class ProfileScreen extends AppCompatActivity {
     ImageView image;
     KAlertDialog pDialog;
     private Handler mHandler;
-    String service_name,location,budget,imageLink,placeid;
+    String service_name,location,budget,imageLink,placeid,id,fb,token;
     Float ratingfloat;
 
     @Override
@@ -43,12 +46,15 @@ public class ProfileScreen extends AppCompatActivity {
 
         }
         else {
+            id=bundle.getString("id");
             service_name=bundle.getString("name");
             location = bundle.getString("location");
             ratingfloat = bundle.getFloat("rating");
             budget = bundle.getString("budget");
             imageLink = bundle.getString("imageLink");
             placeid=bundle.getString("placeid");
+            fb=bundle.getString("fb");
+            token=bundle.getString("token");
             textName = findViewById(R.id.name);
             textType = findViewById(R.id.serviceType);
             textPrice = findViewById(R.id.price);
@@ -78,7 +84,27 @@ public class ProfileScreen extends AppCompatActivity {
     public void googlepage(View view) {
         Bundle bundle=new Bundle();
         bundle.putString("placeid",placeid);
+        bundle.putString("placename",service_name);
         Intent intent=new Intent(ProfileScreen.this, GoogleReviews.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    public void startchatmessage(View view) {
+
+                Intent intent = new Intent(this, ConversationActivity.class);
+                intent.putExtra(ConversationUIService.USER_ID, id);
+                intent.putExtra(ConversationUIService.DISPLAY_NAME, service_name); //put it for displaying the title.
+                intent.putExtra(ConversationUIService.TAKE_ORDER,true); //Skip chat list for showing on back press
+                startActivity(intent);
+    }
+
+    public void fbmessage(View view) {
+        Bundle bundle=new Bundle();
+        bundle.putString("fb",fb);
+        bundle.putString("token",token);
+        bundle.putString("name",service_name);
+        Intent intent=new Intent(ProfileScreen.this, Facebook.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }

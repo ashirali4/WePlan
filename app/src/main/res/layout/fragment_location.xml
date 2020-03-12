@@ -150,7 +150,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_height="203dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:scrollbars="horizontal"
@@ -180,8 +180,7 @@
                 android:id="@+id/servicesslist"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
-                android:layout_marginLeft="10dp
-"
+                android:layout_marginLeft="10dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:scrollbars="horizontal"

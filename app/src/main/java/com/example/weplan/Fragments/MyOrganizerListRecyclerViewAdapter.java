@@ -47,12 +47,15 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         final String name=mValues.get(position).servicename;
+        final String id=mValues.get(position).id;
         final String location=mValues.get(position).location;
         final String rating=mValues.get(position).rating;
         final Float ratingFloat=Float.parseFloat(rating);
         final String budget=mValues.get(position).startb;
         final String imagelink=mValues.get(position).imglink;
         final String placeid=mValues.get(position).placeid;
+        final String fb=mValues.get(position).fb;
+        final String token=mValues.get(position).token;
         mHandler=new Handler();
         holder.organizername.setText(name);
         holder.locationorg.setText(location);
@@ -71,12 +74,15 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
                     mmListener.onListFragmentInteraction();
 
                     Bundle bundle=new Bundle();
+                    bundle.putString("id",id);
                     bundle.putString("name",name);
                     bundle.putString("location",location);
                     bundle.putFloat("rating",ratingFloat);
                     bundle.putString("budget",budget);
                     bundle.putString("imageLink",imagelink);
                     bundle.putString("placeid",placeid);
+                    bundle.putString("fb",fb);
+                    bundle.putString("token",token);
                     final Intent intent=new Intent(v.getContext(), ProfileScreen.class);
                     intent.putExtras(bundle);
                     pDialog = new KAlertDialog(v.getContext(), KAlertDialog.PROGRESS_TYPE);
