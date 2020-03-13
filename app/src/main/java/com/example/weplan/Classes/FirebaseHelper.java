@@ -70,7 +70,9 @@ public class FirebaseHelper {
                     services.imglink = snapshot.child("link").getValue().toString();
                     services.startb = snapshot.child("sb").getValue().toString();
                     services.endb = snapshot.child("eb").getValue().toString();
-
+                    if(snapshot.child("phone").exists()) {
+                        services.phone = snapshot.child("phone").getValue().toString();
+                    }
                     if(snapshot.child("placeid").exists()) {
                         services.placeid = snapshot.child("placeid").getValue().toString();
                     }

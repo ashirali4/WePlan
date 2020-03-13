@@ -200,7 +200,7 @@ View view;
             @Override
             public void onSuccess(ArrayList<Services> arrayList) {
                 source=arrayList;
-                adapter = new Adapter(arrayList);
+                adapter = new Adapter(arrayList,mListener);
             }
         });
 

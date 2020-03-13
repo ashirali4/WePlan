@@ -56,6 +56,7 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         final String placeid=mValues.get(position).placeid;
         final String fb=mValues.get(position).fb;
         final String token=mValues.get(position).token;
+        final String phone=mValues.get(position).phone;
         mHandler=new Handler();
         holder.organizername.setText(name);
         holder.locationorg.setText(location);
@@ -76,6 +77,7 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
                     Bundle bundle=new Bundle();
                     bundle.putString("id",id);
                     bundle.putString("name",name);
+                    bundle.putString("phone",phone);
                     bundle.putString("location",location);
                     bundle.putFloat("rating",ratingFloat);
                     bundle.putString("budget",budget);

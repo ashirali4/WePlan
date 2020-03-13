@@ -4,122 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bcolor"
     tools:context=".Fragments.ProfileFragment"
     android:orientation="vertical"
     android:isScrollContainer="true"
+
     android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="80dp"
+            android:layout_weight="1"
+            android:src="@drawable/weplancolor" />
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="405dp">
+        android:layout_height="209dp">
+
         <LinearLayout
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="190dp"
+            android:background="@color/colorPrimary"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/profileimage"
-                android:layout_marginTop="65dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="120dp"
                 android:layout_height="110dp"
-                android:src="@drawable/avtar_new"
-                />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_user" />
+
             <EditText
                 android:id="@+id/name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Mubeen"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="15sp"/>
-            <RatingBar
-                android:id="@+id/ratingstar"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:stepSize="0.1" />
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
-        <androidx.cardview.widget.CardView
-            android:layout_width="280dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="265dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="3">
-                <LinearLayout
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:textColor="@color/black"
-                        android:text="Following"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:text="125"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:textColor="@color/black"
-                        android:text="Follower"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:text="125"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:textColor="@color/black"
-                        android:text="Following"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:text="125"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"/>
-                </LinearLayout>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 
@@ -147,12 +84,14 @@
 
                 <EditText
                     android:id="@+id/useremail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="194dp"
+                    android:paddingLeft="5dp"
+                    android:backgroundTint="@color/colorPrimary"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:ems="15"
+                    android:fontFamily="@font/poppins_bold"
                     android:inputType="textEmailAddress"
-                    android:paddingLeft="20dp"
                     android:text="chmubeen2051@gmail.com"
                     android:textSize="12dp"
                     android:textStyle="bold" />
@@ -177,12 +116,14 @@
 
                 <EditText
                     android:id="@+id/number"
-                    android:layout_width="wrap_content"
+                    android:layout_width="194dp"
+                    android:paddingLeft="5dp"
+                    android:backgroundTint="@color/colorPrimary"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:ems="15"
+                    android:fontFamily="@font/poppins_bold"
                     android:inputType="phone"
-                    android:paddingLeft="20dp"
                     android:text="+0900-78601"
                     android:textSize="12dp"
                     android:textStyle="bold" />
@@ -204,24 +145,58 @@
 
                 <EditText
                     android:id="@+id/location"
-                    android:layout_width="wrap_content"
+                    android:layout_width="194dp"
+                    android:paddingLeft="5dp"
+                    android:backgroundTint="@color/colorPrimary"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:ems="15"
                     android:inputType="text"
-                    android:paddingLeft="20dp"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Lahore"
                     android:textSize="12dp"
                     android:textStyle="bold" />
 
 
             </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/editProfile"
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Edit"
+                android:textColor="#ffffff"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins_bold"
+                app:cornerRadius="20dp" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/updatebutton"
+                android:layout_width="147dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="update"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="12dp"
+                app:cornerRadius="20dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logout"
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Logout"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="#ffffff"
+                android:textSize="12dp"
+
+                app:cornerRadius="20dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="25dp"
                 android:gravity="center"
+                android:visibility="invisible"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -231,12 +206,14 @@
 
                 <EditText
                     android:id="@+id/price"
-                    android:layout_width="wrap_content"
+                    android:layout_width="194dp"
+                    android:paddingLeft="5dp"
+                    android:backgroundTint="@color/colorPrimary"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:ems="15"
                     android:inputType="number"
-                    android:paddingLeft="20dp"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="20000"
                     android:textSize="12dp"
                     android:textStyle="bold" />
@@ -247,28 +224,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/editProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Edit"
-                    android:textColor="#ffffff"
-                    android:textSize="12dp"
-                    app:cornerRadius="20dp"
-                    />
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/updatebutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
-                    android:layout_marginTop="20dp"
-                    android:text="update"
-                    android:textColor="#ffffff"
-                    app:cornerRadius="20dp"
-                    android:textSize="12dp" />
+                android:layout_marginTop="10dp"
+                >
+
+
+
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

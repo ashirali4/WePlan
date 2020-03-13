@@ -1,71 +1,42 @@
 package com.example.weplan.Fragments;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
-
-import com.example.weplan.Classes.FirebaseHelper;
-import com.example.weplan.R;
-import com.example.weplan.uploadinfo;
-import com.google.android.material.button.MaterialButton;
-import com.squareup.picasso.Picasso;
-
-
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.DownloadManager;
-import android.content.ContentResolver;
-import android.graphics.Bitmap;
-import android.net.Uri;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import gun0912.tedimagepicker.builder.TedImagePicker;
-import gun0912.tedimagepicker.builder.listener.OnSelectedListener;
-
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.weplan.Classes.FirebaseHelper;
+import com.example.weplan.R;
+import com.example.weplan.login_main;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+
+import gun0912.tedimagepicker.builder.TedImagePicker;
+import gun0912.tedimagepicker.builder.listener.OnSelectedListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,7 +64,7 @@ public class ProfileFragment extends Fragment {
 
     FirebaseHelper firebaseHelper;
 
-    MaterialButton editbutton,updatebutton;
+    MaterialButton editbutton,updatebutton,logout;
     Button Update, Edit;
     ImageView imageView;
 
@@ -148,9 +119,9 @@ public class ProfileFragment extends Fragment {
         ratingBar = view.findViewById(R.id.ratingstar);
         editbutton=view.findViewById(R.id.editProfile);
         updatebutton=view.findViewById(R.id.updatebutton);
-
+        logout=view.findViewById(R.id.logout);
         preferences= this.getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE);
-
+        final SharedPreferences.Editor editor=preferences.edit();
 
 
         firebaseHelper=new FirebaseHelper();
@@ -170,6 +141,15 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Enable();
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.clear();
+                editor.commit();
+                Intent intent = new Intent(getActivity(), login_main.class);
+                startActivity(intent);
             }
         });
 

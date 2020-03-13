@@ -74,7 +74,7 @@ android:layout_marginTop="5dp"
                 android:layout_width="130dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-
+                android:onClick="callus"
 android:layout_marginLeft="15dp"
                 android:text="Call Directly"
                 android:textSize="9sp"
@@ -163,7 +163,7 @@ android:layout_marginLeft="15dp"
 
                     <TextView
 
-                        android:id="@+id/phone"
+                        android:id="@+id/phoneprofile"
                         android:fontFamily="@font/poppins_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -245,6 +245,20 @@ android:layout_marginLeft="15dp"
                     app:icon="@drawable/google"
                     app:iconTint="@null" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/showonmap"
+                    android:layout_width="152dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="-9dp"
+                    android:backgroundTint="@color/white"
+                    android:onClick="showonmap"
+                    android:text="Get Directions"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp"
+                    app:cornerRadius="20dp"
+                    app:icon="@drawable/ic_location_maps"
+                    app:iconTint="@null" />
 
             </LinearLayout>
 

@@ -55,10 +55,11 @@
                     android:padding="12dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="22dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_search_black_24dp"
+                        android:src="@drawable/ic_world"
+
                         android:tint="#d0d0d0" />
 
 
@@ -69,7 +70,7 @@
                         android:id="@+id/search_layout"
                         android:background="#00000000"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="Search "
+                        android:hint="Welcome to Featured List"
                         android:inputType="text"
                         android:maxLength="20"
                         android:paddingLeft="5dp"
@@ -83,7 +84,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="13dp"
-                    android:src="@drawable/avtar_new"
+                    android:src="@drawable/ic_user"
                     app:civ_border_color="#FF000000" />
 
 
