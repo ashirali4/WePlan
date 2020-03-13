@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,12 +27,13 @@ public class OrganizerListFragment extends Fragment {
     private int mColumnCount = 1;
     ShimmerRecyclerView recyclerView;
     ArrayList<Services> templist;
-    private OrganizerListFragment.OnListFragmentInteractionListener mListener;
+    private OnListFragmentInteractionListener mListener;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_organizerlist_list, container, false);
-         recyclerView = (ShimmerRecyclerView) view.findViewById(R.id.shimmer_recycler_view);
+        recyclerView = (ShimmerRecyclerView) view.findViewById(R.id.shimmer_recycler_view);
         recyclerView.showShimmerAdapter();
 
         // Set the adapter
@@ -45,12 +47,8 @@ public class OrganizerListFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
-
             helper = new FirebaseHelper();
-            helper.getlist(new FirebaseHelper.Callback() {
-
-
-
+            helper.getListAccordingRequirements(new FirebaseHelper.Callback() {
 
                 @Override
                 public void onFailure(Exception e) {
@@ -59,18 +57,17 @@ public class OrganizerListFragment extends Fragment {
 
                 @Override
                 public void onSuccess(ArrayList<Services> arrayList) {
-                    templist=arrayList;
-                    recyclerView.setAdapter(new MyOrganizerListRecyclerViewAdapter(templist,mListener));
-
+                    templist = arrayList;
+                    if(templist.isEmpty()) {
+                        Toast.makeText(getContext(), "No Organizer matches with your requirements", Toast.LENGTH_SHORT).show();
+                    }
+                    recyclerView.setAdapter(new MyOrganizerListRecyclerViewAdapter(templist, mListener));
                 }
-
-
             });
-
         }
         return view;
-
     }
+
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OrganizerListFragment.OnListFragmentInteractionListener) {
@@ -80,6 +77,7 @@ public class OrganizerListFragment extends Fragment {
                     + " must implement OnListFragmentInteractionListener");
         }
     }
+
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction();

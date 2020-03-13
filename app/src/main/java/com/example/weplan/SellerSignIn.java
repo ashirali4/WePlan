@@ -29,13 +29,14 @@ public class SellerSignIn extends AppCompatActivity {
     String sellerid;
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_sign_in);
 
         textsellerId=findViewById(R.id.sellerId);
-
+        reference = FirebaseDatabase.getInstance().getReference();
         sharedpreferences = getSharedPreferences("sellerinfo", Context.MODE_PRIVATE );
         editor = sharedpreferences.edit();
     }
@@ -49,14 +50,17 @@ public class SellerSignIn extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
     public void SignInSeller(View view) {
-        reference = FirebaseDatabase.getInstance().getReference("Services");
-        reference.addValueEventListener(new ValueEventListener() {
+        id=textsellerId.getText().toString();
+
+        reference.child("Services").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    sellerid= snapshot.getValue().toString();
-                    if(sellerid==textsellerId.toString()) {
+                    sellerid= snapshot.getKey();
+                    String sellername=snapshot.child("servicename").getValue().toString();
+                    if(id.equals(sellerid)) {
                         editor.putString("sellerid", sellerid); // Storing string
+                        editor.putString("sellername", sellername); // Storing string
                         editor.commit();
                         Toast.makeText(SellerSignIn.this, "check"+sellerid.toString(), Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(getApplicationContext(),SellerDashboard.class);
@@ -68,6 +72,7 @@ public class SellerSignIn extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 

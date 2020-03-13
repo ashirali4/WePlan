@@ -1,6 +1,9 @@
 package com.example.weplan;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TabHost;
+import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,24 +27,27 @@ public class Search extends AppCompatActivity implements ServiceslistFragment.On
 
 
 
-
-        ViewPager2 viewPager2=findViewById(R.id.viewpager);
+        ViewPager2 viewPager2 = findViewById(R.id.viewpager);
         viewPager2.setAdapter(new OrderPageAdapter(this));
-        TabLayout tableLayout=findViewById(R.id.tablelayoutforsearch);
-        TabLayoutMediator tabLayoutMediator=new TabLayoutMediator(
+        final TabLayout tableLayout = findViewById(R.id.tablelayoutforsearch);
+       // final TabHost  tabHost = (TabHost)findViewById(android.R.id.tabhost);
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(
                 tableLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         tab.setText("Orginzers");
                         tab.setIcon(R.drawable.ic_people_black_24dp);
+                        //tableLayout.removeTabAt(0);
+//                        tabHost.getTabWidget().getChildTabViewAt(0).setVisibility(View.GONE);
+
                         break;
                     case 1:
                         tab.setText("Services");
                         tab.setIcon(R.drawable.ic_playlist_play_black_24dp);
-                        BadgeDrawable bd=tab.getOrCreateBadge();
-                        bd.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.colorAccent));
+                        BadgeDrawable bd = tab.getOrCreateBadge();
+                        bd.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
                         bd.setVisible(true);
                         bd.setNumber(100);
                         break;
@@ -53,9 +59,6 @@ public class Search extends AppCompatActivity implements ServiceslistFragment.On
         tabLayoutMediator.attach();
 
     }
-
-
-
     public void onListFragmentInteraction() {
 
     }

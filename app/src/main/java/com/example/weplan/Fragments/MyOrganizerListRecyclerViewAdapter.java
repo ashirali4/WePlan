@@ -26,14 +26,13 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
 
     private final List<Services> mValues;
     private final OrganizerListFragment.OnListFragmentInteractionListener mmListener;
-    public ProfileScreen profileScreen;
     KAlertDialog pDialog;
     private Handler mHandler;
 
 
     public MyOrganizerListRecyclerViewAdapter(List<Services> items, OrganizerListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
-        mmListener=listener;
+        mmListener = listener;
     }
 
     @Override
@@ -46,14 +45,14 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        final String name=mValues.get(position).servicename;
-        final String location=mValues.get(position).location;
-        final String rating=mValues.get(position).rating;
-        final Float ratingFloat=Float.parseFloat(rating);
-        final String budget=mValues.get(position).startb;
-        final String imagelink=mValues.get(position).imglink;
-        final String placeid=mValues.get(position).placeid;
-        mHandler=new Handler();
+        final String name = mValues.get(position).servicename;
+        final String location = mValues.get(position).location;
+        final String rating = mValues.get(position).rating;
+        final Float ratingFloat = Float.parseFloat(rating);
+        final String budget = mValues.get(position).startb;
+        final String imagelink = mValues.get(position).imglink;
+        final String placeid = mValues.get(position).placeid;
+        mHandler = new Handler();
         holder.organizername.setText(name);
         holder.locationorg.setText(location);
         holder.ratingorg.setText(rating);
@@ -70,14 +69,14 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
                     // fragment is attached to one) that an item has been selected.
                     mmListener.onListFragmentInteraction();
 
-                    Bundle bundle=new Bundle();
-                    bundle.putString("name",name);
-                    bundle.putString("location",location);
-                    bundle.putFloat("rating",ratingFloat);
-                    bundle.putString("budget",budget);
-                    bundle.putString("imageLink",imagelink);
-                    bundle.putString("placeid",placeid);
-                    final Intent intent=new Intent(v.getContext(), ProfileScreen.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", name);
+                    bundle.putString("location", location);
+                    bundle.putFloat("rating", ratingFloat);
+                    bundle.putString("budget", budget);
+                    bundle.putString("imageLink", imagelink);
+                    bundle.putString("placeid", placeid);
+                    final Intent intent = new Intent(v.getContext(), ProfileScreen.class);
                     intent.putExtras(bundle);
                     pDialog = new KAlertDialog(v.getContext(), KAlertDialog.PROGRESS_TYPE);
                     pDialog.getProgressHelper().setBarColor(Color.parseColor("#4E67FD"));
@@ -101,7 +100,6 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
     }
 
 
-
     @Override
     public int getItemCount() {
         return mValues.size();
@@ -116,7 +114,7 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
         public final TextView startb;
         public final TextView endb;
         public final ImageView imageView;
-        final String imgURL  = "https://www.google.com/images/srpr/logo11w.png";
+        final String imgURL = "https://www.google.com/images/srpr/logo11w.png";
 
         public Services mItem;
 
@@ -125,23 +123,16 @@ public class MyOrganizerListRecyclerViewAdapter extends RecyclerView.Adapter<MyO
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
             organizername = (TextView) view.findViewById(R.id.uuuuu);
-            locationorg=(TextView) view.findViewById(R.id.user_location_org);
-            ratingorg=(TextView) view.findViewById(R.id.rating_org);
-            startb=(TextView) view.findViewById(R.id.startb);
-            endb=(TextView) view.findViewById(R.id.endb);
-            imageView=(ImageView) view.findViewById(R.id.imageView12);
+            locationorg = (TextView) view.findViewById(R.id.user_location_org);
+            ratingorg = (TextView) view.findViewById(R.id.rating_org);
+            startb = (TextView) view.findViewById(R.id.startb);
+            endb = (TextView) view.findViewById(R.id.endb);
+            imageView = (ImageView) view.findViewById(R.id.imageView12);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + organizername.getText() + "'";
         }
-
-
     }
-
-
-
-
-
 }

@@ -1,9 +1,12 @@
 package com.example.weplan.Classes;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
+import com.example.weplan.requirement;
 import com.example.weplan.uploadinfo;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +43,7 @@ public class FirebaseHelper {
 
     }
 
+
     public interface servicecallback {
         void onSuccess(ArrayList<servicelist> arrayList);
 
@@ -54,10 +58,12 @@ public class FirebaseHelper {
 
     //WRITE
 
-    public void getlist(final Callback callback) {
+    public void getSingleServiceList(final Callback callback) {
 
-
-        db = FirebaseDatabase.getInstance().getReference("Services");
+        SharedPreferences preferences;
+        preferences= requirement.ApplicationContext().getSharedPreferences("ServiceInfo", Context.MODE_PRIVATE);
+        String serviceName=preferences.getString("ServiceName","notloggedin");
+        db = FirebaseDatabase.getInstance().getReference(serviceName);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -69,7 +75,7 @@ public class FirebaseHelper {
                     services.imglink = snapshot.child("link").getValue().toString();
                     services.startb = snapshot.child("sb").getValue().toString();
                     services.endb = snapshot.child("eb").getValue().toString();
-                    if(snapshot.child("placeid").exists()) {
+                    if (snapshot.child("placeid").exists()) {
                         services.placeid = snapshot.child("placeid").getValue().toString();
                     }
                     arrayList.add(services);
@@ -82,9 +88,53 @@ public class FirebaseHelper {
                 callback.onFailure(databaseError.toException());
             }
         });
-
     }
 
+    public void getListAccordingRequirements(final Callback callback) {
+
+        SharedPreferences preferences;
+        preferences= requirement.ApplicationContext().getSharedPreferences("requirements", Context.MODE_PRIVATE);
+        String people=preferences.getString("peoplecount","notloggedin");
+        final String loc=preferences.getString("location","notloggedin");
+        final String budget=preferences.getString("budget","notloggedin");
+        db = FirebaseDatabase.getInstance().getReference("Services");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Services services = new Services();
+                    String location=snapshot.child("location").getValue().toString();
+                    String sb=snapshot.child("sb").getValue().toString();
+                    String eb=snapshot.child("eb").getValue().toString();
+                    String LOCATION=loc.toUpperCase();
+                    int enteredbudget=Integer.parseInt(budget);
+                    int isb=Integer.parseInt(sb);
+                    int ieb=Integer.parseInt(eb);
+                    if(LOCATION.equals(location)
+                            && enteredbudget<=ieb) {
+                        services.servicename = snapshot.child("servicename").getValue().toString();
+                        services.location = snapshot.child("location").getValue().toString();
+                        services.rating = snapshot.child("rating").getValue().toString();
+                        services.imglink = snapshot.child("link").getValue().toString();
+                        services.startb = snapshot.child("sb").getValue().toString();
+                        services.endb = snapshot.child("eb").getValue().toString();
+                        if (snapshot.child("placeid").exists()) {
+                            services.placeid = snapshot.child("placeid").getValue().toString();
+                        }
+                        arrayList.add(services);
+                    }
+                }
+                callback.onSuccess(arrayList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onFailure(databaseError.toException());
+            }
+        });
+
+
+    }
 
     public void getserviceslist(final servicecallback callback) {
 
@@ -112,22 +162,57 @@ public class FirebaseHelper {
 
     }
 
-    public void updateuser(HashMap<String, Object> map,String userid) {
+
+    public void getServicesListInDetail(final Callback callback) {
+
+        db = FirebaseDatabase.getInstance().getReference("Services");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Services services = new Services();
+                    services.servicename = snapshot.child("servicename").getValue().toString();
+                    services.location = snapshot.child("location").getValue().toString();
+                    services.rating = snapshot.child("rating").getValue().toString();
+                    services.imglink = snapshot.child("link").getValue().toString();
+                    services.startb = snapshot.child("sb").getValue().toString();
+                    services.endb = snapshot.child("eb").getValue().toString();
+                    if (snapshot.child("placeid").exists()) {
+                        services.placeid = snapshot.child("placeid").getValue().toString();
+                    }
+                    arrayList.add(services);
+                }
+                callback.onSuccess(arrayList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onFailure(databaseError.toException());
+            }
+        });
+
+
+    }
+
+
+    public void updateuser(HashMap<String, Object> map, String userid) {
         firebaseStorage = FirebaseStorage.getInstance();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
         ref.updateChildren(map);
 
     }
-    public void pushorganizerplace(String userid,String value) {
+
+    public void pushorganizerplace(String userid, String value) {
         firebaseStorage = FirebaseStorage.getInstance();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Services").child(userid);
         ref.child("placeid").setValue(value);
 
     }
-    public String getplaceid(String userid,String value) {
+
+    public String getplaceid(String userid, String value) {
         firebaseStorage = FirebaseStorage.getInstance();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Services").child(userid);
-        String key=ref.child("placeid").getKey();
+        String key = ref.child("placeid").getKey();
         return key;
     }
 
@@ -139,9 +224,6 @@ public class FirebaseHelper {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
-
                         storageReference2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
@@ -154,11 +236,12 @@ public class FirebaseHelper {
                             }
                         });
                         //uploadinfo imageUploadInfo = new uploadinfo(taskSnapshot.getUploadSessionUri().toString());
-                       //String ImageUploadId = databaseReference.push().getKey();
+                        //String ImageUploadId = databaseReference.push().getKey();
                         //databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
                     }
                 });
     }
+
 }
 
 

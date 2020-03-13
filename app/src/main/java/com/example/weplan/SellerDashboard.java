@@ -9,6 +9,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.applozic.mobicomkit.Applozic;
+import com.applozic.mobicomkit.api.account.register.RegistrationResponse;
+import com.applozic.mobicomkit.api.account.user.User;
+import com.applozic.mobicomkit.listners.AlLoginHandler;
+import com.applozic.mobicomkit.uiwidgets.conversation.ConversationUIService;
+import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
 import com.example.weplan.Classes.FirebaseHelper;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
@@ -37,9 +43,6 @@ public class SellerDashboard extends AppCompatActivity {
         PlacesClient placesClient = Places.createClient(this);
     }
 
-    public void googleBusiness(View view) {
-    }
-
     public void googleyou(View view) {
 
 
@@ -55,7 +58,7 @@ public class SellerDashboard extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 Toast.makeText(this, "Place: " + place.getName() + ", " + place.getId(), Toast.LENGTH_SHORT).show();
-                String uid=sharedpreferences.getString("sellerid","asdfasdl");
+                String uid=sharedpreferences.getString("sellerid","notlogged");
                 firebaseHelper.pushorganizerplace(uid,place.getId());
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 // TODO: Handle the error.
@@ -65,5 +68,35 @@ public class SellerDashboard extends AppCompatActivity {
                 // The user canceled the operation.
             }
         }
+    }
+
+    public void startChat(View view) {
+
+        String uid=sharedpreferences.getString("sellerid","notlogged");
+        String sname=sharedpreferences.getString("sellername","notlogged");
+
+
+        User user = new User();
+        user.setUserId(uid); //userId it can be any unique user identifier NOTE : +,*,? are not allowed chars in userId.
+        user.setDisplayName(sname); //displayName is the name of the user which will be shown in chat messages
+        user.setEmail(""); //optional
+        user.setAuthenticationTypeId(User.AuthenticationType.APPLOZIC.getValue());  //User.AuthenticationType.APPLOZIC.getValue() for password verification from Applozic server and User.AuthenticationType.CLIENT.getValue() for access Token verification from your server set access token as password
+        user.setPassword(""); //optional, leave it blank for testing purpose, read this if you want to add additional security by verifying password from your server https://www.applozic.com/docs/configuration.html#access-token-url
+        user.setImageLink("");//optional, set your image link if you have
+
+        Applozic.connectUser(this, user, new AlLoginHandler() {
+            @Override
+            public void onSuccess(RegistrationResponse registrationResponse, Context context) {
+                Toast.makeText(context, "user created", Toast.LENGTH_SHORT).show();
+
+                 Intent intent = new Intent(context, ConversationActivity.class);
+                 startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(RegistrationResponse registrationResponse, Exception exception) {
+                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

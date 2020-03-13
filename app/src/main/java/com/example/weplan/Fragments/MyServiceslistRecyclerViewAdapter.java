@@ -9,13 +9,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weplan.Classes.servicelist;
 import com.example.weplan.Fragments.ServiceslistFragment.OnListFragmentInteractionListener;
 import com.example.weplan.Fragments.dummy.DummyContent.DummyItem;
+import com.example.weplan.MainActivity;
 import com.example.weplan.ProfileScreen;
 import com.example.weplan.R;
+import com.example.weplan.Search;
+import com.example.weplan.ServicesList;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -46,9 +52,10 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
+        final String name=mValues.get(position).sname;
+        final String imglink=mValues.get(position).logolink;
         holder.servicename.setText(mValues.get(position).sname);
-        Picasso.get().load(mValues.get(position).logolink).into(holder.servicelogo
-        );
+        Picasso.get().load(mValues.get(position).logolink).into(holder.servicelogo);
 
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +63,11 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
             public void onClick(View v) {
                 if (null != mListener) {
                     mListener.onListFragmentInteraction();
+
+                    Intent intent=new Intent(v.getContext(), ServicesList.class);
+                    intent.putExtra("ServiceName",name);
+                    intent.putExtra("imglink",imglink);
+                    v.getContext().startActivity(intent);
 
                 }
             }
@@ -72,7 +84,6 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
         public final TextView mIdView;
         public final TextView servicename;
         public final ImageView servicelogo;
-        public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -81,11 +92,6 @@ public class MyServiceslistRecyclerViewAdapter extends RecyclerView.Adapter<MySe
             servicename = (TextView) view.findViewById(R.id.servicenameonlayout);
             servicelogo = (ImageView) view.findViewById(R.id.serviceimage);
 
-
         }
-
-
-
-        
-
-}}
+    }
+}

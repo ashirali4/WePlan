@@ -47,12 +47,11 @@
         style="@style/LoginTextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
         android:hint="Please Input Budget"
         app:boxStrokeColor="#3F51B5">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textbudget"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
@@ -61,7 +60,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:inputType="number"
                 android:textColorHighlight="#3F51B5"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:startIconDrawable="@drawable/ic_budget" />
     </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -74,16 +73,16 @@
             app:boxStrokeColor="#3F51B5">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textpeoplecount"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
                 android:drawableLeft="@drawable/ic_team"
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/poppins_medium"
                 android:inputType="number"
                 android:textColorHighlight="#3F51B5"
-                android:textSize="14sp"
-                android:layout_marginBottom="10dp"
-                />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -96,6 +95,7 @@
             app:boxStrokeColor="#3F51B5">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textlocation"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
@@ -104,7 +104,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:inputType="text"
                 android:textColorHighlight="#3F51B5"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,7 +123,7 @@
 
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/radioButtonOrganizer"
                     android:layout_width="199dp"
                     android:layout_height="wrap_content"
                     android:button="@drawable/ic_radio"
@@ -136,7 +136,7 @@
                     android:theme="@style/Default" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/radioButton1"
+                    android:id="@+id/radioButtonService"
                     android:layout_width="199dp"
                     android:layout_height="wrap_content"
                     android:button="@drawable/ic_radio"
@@ -151,11 +151,7 @@
 
             </RadioGroup>
 
-
         </LinearLayout>
-
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -175,8 +171,6 @@
                 app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>
 
 

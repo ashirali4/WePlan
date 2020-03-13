@@ -83,7 +83,6 @@ public class ServiceslistFragment extends Fragment {
 
 
 
-
             @Override
             public void onFailure(Exception e) {
 

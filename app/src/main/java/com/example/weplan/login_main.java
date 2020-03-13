@@ -57,34 +57,6 @@ public class login_main extends AppCompatActivity {
        signin=findViewById(R.id.organizerSignIn);
 
 
-        User user = new User();
-        user.setUserId("ch01"); //userId it can be any unique user identifier NOTE : +,*,? are not allowed chars in userId.
-        user.setDisplayName("Saleem Ali"); //displayName is the name of the user which will be shown in chat messages
-        user.setEmail(""); //optional
-        user.setAuthenticationTypeId(User.AuthenticationType.APPLOZIC.getValue());  //User.AuthenticationType.APPLOZIC.getValue() for password verification from Applozic server and User.AuthenticationType.CLIENT.getValue() for access Token verification from your server set access token as password
-        user.setPassword(""); //optional, leave it blank for testing purpose, read this if you want to add additional security by verifying password from your server https://www.applozic.com/docs/configuration.html#access-token-url
-        user.setImageLink("");//optional, set your image link if you have
-
-        Applozic.connectUser(this, user, new AlLoginHandler() {
-            @Override
-            public void onSuccess(RegistrationResponse registrationResponse, Context context) {
-              Toast.makeText(context, "user created", Toast.LENGTH_SHORT).show();
-
-
-                Intent intent = new Intent(context, ConversationActivity.class);
-                intent.putExtra(ConversationUIService.USER_ID, "ashir");
-                intent.putExtra(ConversationUIService.DISPLAY_NAME, "Ashir Arshad"); //put it for displaying the title.
-                intent.putExtra(ConversationUIService.TAKE_ORDER,true); //Skip chat list for showing on back press
-                startActivity(intent);
-               // Intent intent = new Intent(context, ConversationActivity.class);
-               // startActivity(intent);
-            }
-
-            @Override
-            public void onFailure(RegistrationResponse registrationResponse, Exception exception) {
-                Toast.makeText(login_main.this, "Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
