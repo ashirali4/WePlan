@@ -22,4 +22,4 @@ effectively.
 <br>
 <h2> Architecture Diagram </h2>
 
-<img src=diagram.jpg height="600px" width="600px" > 
+
