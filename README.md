@@ -17,7 +17,9 @@ effectively.
 <br>
 <h2> Onboarding Screens </h2>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=signin.png height="300px" width="250px" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=dashboard.png  height="300px" width="250px"  > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src=chatbot.png  height="300px" width="250px"> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=signin.png height="300px" width="200px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=dashboard.png  height="300px" width="200px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src=chatbot.png  height="300px" width="200px"> 
 
 
 <h2> Architecture Diagram </h2>
