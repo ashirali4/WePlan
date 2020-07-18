@@ -13,7 +13,7 @@ effectively.
  
  <br>
 <h2> Mockup </h2>
-<img src=awaaz.jpg > 
+<img src=mockup.PNG > 
 <br>
 <h2> Onboarding Screens </h2>
 
