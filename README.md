@@ -19,7 +19,7 @@ effectively.
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=signin.png height="300px" width="250px" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=dashboard.png  height="300px" width="250px"  > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src=chatbot.png  height="300px" width="250px"> 
 
-<br>
+
 <h2> Architecture Diagram </h2>
 
 <img src=diagram.jpg > 
